@@ -9,4 +9,16 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="txt_style">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="txt_style_2">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

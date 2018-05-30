@@ -6,14 +6,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    tools:context="com.mygdx.game.login">
+    tools:context="com.mygdx.game.signIn">
 
     <ImageView
         android:id="@+id/img_logo"
         android:layout_gravity="center_horizontal"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginBottom="40dp"/>
+
+    <EditText
+        style="@style/txt_style"
+        android:id="@+id/txt_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/nickname" />
 
     <EditText
         style="@style/txt_style"
@@ -24,7 +31,7 @@
 
     <!--style="@style/text_style"-->
     <EditText
-        style="@style/txt_style_2"
+        style="@style/txt_style"
         android:id="@+id/txt_password"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -33,20 +40,9 @@
 
     <Button
         style="@style/txt_style"
-        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="@string/btn_login"
-        android:onClick="logIn"/>
-
-    <Button
-        style="@style/txt_style"
-        android:id="@+id/btn_signin"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:textColor="@color/blanco"
-        android:background="@android:color/transparent"
-        android:text="@string/signin"
+        android:text="@string/btn_signin"
         android:onClick="signIn"/>
 
 </LinearLayout>

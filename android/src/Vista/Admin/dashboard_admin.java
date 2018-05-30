@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package Vista.Admin;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -6,6 +6,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.mygdx.game.R;
 
 public class dashboard_admin extends AppCompatActivity {
 
