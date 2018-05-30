@@ -1,7 +1,6 @@
 package Vista.Admin;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,16 +15,18 @@ import com.mygdx.game.R;
 
 import java.util.ArrayList;
 
+import Controlador.Challenge_adapter;
 import Controlador.User_adapter;
+import Modelo.Challenge;
 import Modelo.User;
 
 
-public class user extends Fragment {
+public class challengeFragment extends Fragment {
     private View rootview;
-    private FloatingActionButton new_user;
-    private ListView users;
-    private User_adapter adapter;
-    private ArrayList<User> ArrayItem = null;
+    private FloatingActionButton new_challenge;
+    private ListView challenges;
+    private Challenge_adapter adapter;
+    private ArrayList<Challenge> ArrayItem = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,11 +37,18 @@ public class user extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.fragment_user,container,false);
-        users = rootview.findViewById(R.id.LV_users);
+        rootview = inflater.inflate(R.layout.fragment_challenge,container,false);
+        challenges = rootview.findViewById(R.id.LV_challenge);
+        new_challenge = rootview.findViewById(R.id.FB_add_challenge);
         ArrayItem = new ArrayList<>();
 
-        users.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        new_challenge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
+        challenges.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -63,10 +71,10 @@ public class user extends Fragment {
 
     public void cargarLista(Context context){
         for(int i = 0 ; i<12;i++){
-            String msj = "User"+String.valueOf(i);
-            ArrayItem.add(new User(msj,msj));
+            String msj = "Challenge"+String.valueOf(i);
+            ArrayItem.add(new Challenge(msj,msj));
         }
-        adapter = new User_adapter(ArrayItem, context);
-        users.setAdapter(adapter);
+        adapter = new Challenge_adapter(ArrayItem, context);
+        challenges.setAdapter(adapter);
     }
 }

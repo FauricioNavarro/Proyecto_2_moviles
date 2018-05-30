@@ -13,7 +13,6 @@ import com.mygdx.game.R;
 
 public class dashboard_admin extends AppCompatActivity {
 
-    private TextView mTextMessage;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -27,10 +26,10 @@ public class dashboard_admin extends AppCompatActivity {
                     transaction.replace(R.id.fr_contenedor,new user()).commit();
                     return true;
                 case R.id.navigation_challenges:
-                    transaction.replace(R.id.fr_contenedor,new user()).commit();
+                    transaction.replace(R.id.fr_contenedor,new challengeFragment()).commit();
                     return true;
                 case R.id.navigation_points:
-                    transaction.replace(R.id.fr_contenedor,new user()).commit();
+                    transaction.replace(R.id.fr_contenedor,new rewardFragment()).commit();
                     return true;
             }
             return false;
