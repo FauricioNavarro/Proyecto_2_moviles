@@ -4,11 +4,11 @@ package Modelo;
  * Created by fauricio on 29/05/18.
  */
 
-public class Usuario {
+public class User {
     private String nickname;
     private String email;
 
-    public Usuario(String nickname, String email) {
+    public User(String nickname, String email) {
         this.nickname = nickname;
         this.email = email;
     }

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.mygdx.game.R;
-import com.mygdx.game.dashboard_admin;
 
 import Vista.Admin.dashboard_admin;
 

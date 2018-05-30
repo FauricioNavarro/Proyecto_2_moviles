@@ -21,7 +21,7 @@
             android:label="@string/app_name"
             android:screenOrientation="landscape"></activity>
         <activity
-            android:name=".login"
+            android:name="Vista.login"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,10 +30,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".dashboard_admin"
+            android:name="Vista.Admin.dashboard_admin"
             android:label="@string/title_activity_dashboard_admin"
             android:theme="@style/Theme.AppCompat" />
-        <activity android:name=".signIn"
+        <activity android:name="Vista.signIn"
             android:label="Sign In"
             android:theme="@style/Theme.AppCompat"></activity>
     </application>
