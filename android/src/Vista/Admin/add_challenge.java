@@ -2,6 +2,7 @@ package Vista.Admin;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.mygdx.game.R;
 
@@ -11,5 +12,9 @@ public class add_challenge extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_challenge);
+    }
+
+    public void add_challenge(View v){
+
     }
 }

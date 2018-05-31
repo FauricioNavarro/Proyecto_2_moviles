@@ -43,9 +43,11 @@ public class user extends Fragment {
         users.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                Intent intent = new Intent(getContext(),user_detail.class);
+                startActivity(intent);
             }
         });
+
 
         cargarLista(rootview.getContext());
         return rootview;

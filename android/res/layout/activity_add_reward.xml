@@ -1,9 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
     tools:context="Vista.Admin.add_reward">
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        style="@style/txt_style"
+        android:id="@+id/rw_name"
+        android:text="@string/name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <EditText
+        style="@style/txt_style"
+        android:id="@+id/rw_des"
+        android:text="@string/description"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <EditText
+        style="@style/txt_style"
+        android:id="@+id/rw_type"
+        android:text="@string/type"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <EditText
+        style="@style/txt_style"
+        android:id="@+id/rw_lat"
+        android:text="@string/latitude"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <EditText
+        style="@style/txt_style"
+        android:id="@+id/rw_lon"
+        android:text="@string/longitude"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="25dp"/>
+
+    <Button
+        style="@style/txt_style"
+        android:text="@string/btn_add"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:onClick="add_reward"/>
+
+</LinearLayout>

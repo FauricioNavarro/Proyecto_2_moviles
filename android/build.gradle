@@ -32,13 +32,14 @@ android {
         }
     }
     dependencies {
-        compile 'com.android.support:appcompat-v7:27.+'
-        compile 'com.android.support.constraint:constraint-layout:+'
-        compile 'com.android.support:design:27.+'
-        compile 'com.android.support.constraint:constraint-layout:+'
-        compile 'com.android.support:support-vector-drawable:27.+'
-        compile "com.android.support:support-core-utils:27.+"
-        compile 'com.android.support:support-v4:27.+'
+        implementation 'com.android.support:appcompat-v7:27.+'
+        implementation 'com.android.support.constraint:constraint-layout:+'
+        implementation 'com.android.support:design:27.+'
+        implementation 'com.android.support.constraint:constraint-layout:+'
+        implementation 'com.android.support:support-vector-drawable:27.+'
+        implementation "com.android.support:support-core-utils:27.+"
+        implementation 'com.android.support:support-v4:27.+'
+        implementation 'com.google.android.gms:play-services-maps:+'
     }
 }
 
@@ -105,7 +106,7 @@ eclipse {
         sourceCompatibility = 1.6
         targetCompatibility = 1.6
     }
-        classpath {plusConfigurations +=[ project.configurations.compile]        
+        classpath {plusConfigurations +=[project.configurations.compile]        
         containers 'com.android.ide.eclipse.adt.ANDROID_FRAMEWORK', 'com.android.ide.eclipse.adt.LIBRARIES'       
     }
 

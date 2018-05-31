@@ -9,27 +9,40 @@
     tools:context="Vista.Admin.add_challenge">
 
     <EditText
+        style="@style/txt_style"
         android:id="@+id/ch_name"
-        android:layout_width="match_parent"
-        android:layout_height="35dp" />
-
-    <EditText
-        android:id="@+id/ch_des"
-        android:layout_width="match_parent"
-        android:layout_height="35dp" />
-
-    <EditText
-        android:id="@+id/ch_lat"
-        android:layout_width="match_parent"
-        android:layout_height="35dp" />
-
-    <EditText
-        android:id="@+id/ch_lon"
-        android:layout_width="match_parent"
-        android:layout_height="35dp" />
-
-    <Button
+        android:text="@string/name"
         android:layout_width="match_parent"
         android:layout_height="40dp" />
+
+    <EditText
+        style="@style/txt_style"
+        android:id="@+id/ch_des"
+        android:text="@string/description"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <EditText
+        style="@style/txt_style"
+        android:id="@+id/ch_lat"
+        android:text="@string/latitude"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <EditText
+        style="@style/txt_style"
+        android:id="@+id/ch_lon"
+        android:text="@string/longitude"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="25dp"/>
+
+    <Button
+        style="@style/txt_style"
+        android:text="@string/btn_add"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:onClick="add_challenge"/>
 
 </LinearLayout>
