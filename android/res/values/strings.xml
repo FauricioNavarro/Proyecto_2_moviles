@@ -5,7 +5,9 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="nickname">Nickname</string>
-    <string name="signin">¿Necesitas una cuenta?</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="signin">Not account yet? Create one</string>
     <string name="btn_login">Log In</string>
     <string name="btn_signin">Sign In</string>
     <string name="title_activity_dashboard_admin">dashboard_admin</string>

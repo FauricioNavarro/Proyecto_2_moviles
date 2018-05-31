@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    tools:context="com.mygdx.game.login">
+    tools:context="Vista.login">
 
     <ImageView
         android:id="@+id/img_logo"
         android:layout_gravity="center_horizontal"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginBottom="40dp"/>
+        android:background="@drawable/logo"/>
 
     <EditText
         style="@style/txt_style"
