@@ -50,8 +50,8 @@ public class Challenge_adapter extends BaseAdapter {
         View vistaItem = layoutInflater.inflate(R.layout.user_item, parent, false);
 
         ImageView imageView = vistaItem.findViewById(R.id.ls_imagen);
-        TextView nickname = vistaItem.findViewById(R.id.txt_nickname);
-        TextView email = vistaItem.findViewById(R.id.txt_email_2);
+        TextView nickname = vistaItem.findViewById(R.id.txt_nickname_user);
+        TextView email = vistaItem.findViewById(R.id.txt_email_user);
 
         imageView.setImageResource(R.drawable.user_icon);
         nickname.setText("Name: "+arrayItems.get(position).getNombre());

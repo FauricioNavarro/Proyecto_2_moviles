@@ -1,22 +1,33 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Timer;
 
 import java.sql.Time;
 
 public class MyGdxGame extends ApplicationAdapter {
-	public final SpriteBatch batch = new SpriteBatch();
-	public static Texture screen;
-	public static Texture img;
-	int plano_x=300;
-	int plano_y=300;
-	int width=80;
-	int height=100;
+	public SpriteBatch batch;
+	public Texture screen;
+	public Texture img;
+	public ShapeRenderer shapeRenderer;
+	public Rectangle rectangle;
+	public int plano_x;
+	public int plano_y;
+	public int width;
+	public int height;
+	public OrthographicCamera camera;
 	/*
 	Timer.Task mytask = new Timer.Task(){
 		@Override
@@ -31,9 +42,15 @@ public class MyGdxGame extends ApplicationAdapter {
 	*/
 	@Override
 	public void create () {
-		//batch = new SpriteBatch();
+		batch = new SpriteBatch();
+		shapeRenderer = new ShapeRenderer();
 		img = new Texture("zombie2.png");
 		screen = new Texture("street2.jpeg");
+		camera = new OrthographicCamera();
+		plano_x=300;
+		plano_y=300;
+		width=80;
+		height=100;
 	}
 
 	@Override
@@ -41,34 +58,53 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(screen,0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		/*
-		for(int i = 0;i<10;i++){
-			batch.draw(screen,0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			batch.draw(img,plano_x,plano_y,width,height);
-			plano_y = plano_y - 50;
-			width = width + 60;
-			height = height + 60;
-		}*/
-		Timer.schedule(new Timer.Task() {
-			@Override
-			public void run() {
-				batch.draw(img,plano_x,plano_y,width,height);
-				plano_y = plano_y - 50;
-				width = width + 60;
-				height = height + 60;
-			}
-		},1f,2f);
+		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-		//Timer.schedule(mytask,5f,4f);
+
+		batch.draw(screen,0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		batch.draw(img,plano_x,plano_y,width,height);
+		rectangle = new Rectangle();
+		//shapeRenderer.setColor(Color.BLUE);
+		shapeRenderer.rect(plano_x,plano_y,width,height);
+
+		if(!(plano_y < -190)){
+			plano_x=plano_x -3;
+			plano_y = plano_y - 10;
+			width = width + 5;
+			height = height + 10;
+		}
+
+		if(Gdx.input.isTouched()){
+			Vector3 touch = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+			Vector2 touch1 = new Vector2(Gdx.input.getX(),Gdx.input.getY());
+			//touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+			camera.unproject(touch);
+			Gdx.app.setLogLevel(Application.LOG_DEBUG);
+			Gdx.app.debug("PLANE", "X plane: " + plano_x + " Y plane: " + plano_y);
+			Gdx.app.debug("INPUT", "X input: " + Gdx.input.getX() + " Y plane: " + Gdx.input.getY());
+
+			if(rectangle.contains(touch.x,touch.y)){
+				shapeRenderer.setColor(Color.BLUE);
+				plano_y = -200;
+			}else{
+				Gdx.app.setLogLevel(Application.LOG_DEBUG);
+				Gdx.app.debug("POSITION", "X touched: " + touch.x + " Y touched: " + touch.y);
+				shapeRenderer.setColor(Color.RED);
+			}
+		}
+
+		shapeRenderer.end();
 		batch.end();
 
 	}
-	
+
+
+
 	@Override
 	public void dispose () {
 		batch.dispose();
 		img.dispose();
 		screen.dispose();
 	}
+
 }

@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.mygdx.game.R;
 
@@ -28,8 +27,8 @@ public class dashboard_admin extends AppCompatActivity {
                 case R.id.navigation_challenges:
                     transaction.replace(R.id.fr_contenedor,new challengeFragment()).commit();
                     return true;
-                case R.id.navigation_points:
-                    transaction.replace(R.id.fr_contenedor,new rewardFragment()).commit();
+                case R.id.navigation_achievements:
+                    transaction.replace(R.id.fr_contenedor,new achievementFragment()).commit();
                     return true;
             }
             return false;
