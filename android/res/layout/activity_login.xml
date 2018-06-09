@@ -41,6 +41,13 @@
 
     <Button
         style="@style/txt_style"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Game temp"
+        android:onClick="temp"/>
+
+    <Button
+        style="@style/txt_style"
         android:id="@+id/btn_signin"
         android:layout_width="match_parent"
         android:layout_height="20dp"

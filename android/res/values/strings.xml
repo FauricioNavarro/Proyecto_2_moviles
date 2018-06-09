@@ -18,7 +18,7 @@
     <string name="title_activity_dashboard_admin">dashboard_admin</string>
     <string name="title_users">Users</string>
     <string name="title_challenges">Challenges</string>
-    <string name="title_points">Reward</string>
+    <string name="title_points">Achievements</string>
     <string name="title__new_challenges">New challenge</string>
     <string name="title_new_reward">New reward</string>
 

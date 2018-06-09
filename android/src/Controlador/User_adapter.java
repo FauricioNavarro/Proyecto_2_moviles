@@ -52,7 +52,7 @@ public class User_adapter extends BaseAdapter {
         TextView nickname = vistaItem.findViewById(R.id.txt_nickname_user);
         TextView email = vistaItem.findViewById(R.id.txt_email_user);
 
-        imageView.setImageResource(R.drawable.user_icon);
+        imageView.setImageResource(R.drawable.user_icon_1);
         nickname.setText("Nickname: "+arrayItems.get(position).getNickname());
         email.setText("Email: "+arrayItems.get(position).getEmail());
         return vistaItem;

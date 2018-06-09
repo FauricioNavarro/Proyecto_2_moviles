@@ -1,7 +1,9 @@
-package com.mygdx.game;
+package Vista.Admin;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.mygdx.game.R;
 
 public class challenge_detail extends AppCompatActivity {
 

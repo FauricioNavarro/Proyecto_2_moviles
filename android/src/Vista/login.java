@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.mygdx.game.AndroidLauncher;
 import com.mygdx.game.R;
 
 import Vista.Admin.dashboard_admin;
@@ -24,6 +25,11 @@ public class login extends AppCompatActivity {
 
     public void signIn(View v){
         Intent  intent = new Intent(getApplicationContext(),signIn.class);
+        startActivity(intent);
+    }
+
+    public void temp(View v){
+        Intent  intent = new Intent(getApplicationContext(),AndroidLauncher.class);
         startActivity(intent);
     }
 }

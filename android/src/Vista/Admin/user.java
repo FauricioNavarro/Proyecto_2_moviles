@@ -22,7 +22,6 @@ import Modelo.User;
 
 public class user extends Fragment {
     private View rootview;
-    private FloatingActionButton new_user;
     private ListView users;
     private User_adapter adapter;
     private ArrayList<User> ArrayItem = null;

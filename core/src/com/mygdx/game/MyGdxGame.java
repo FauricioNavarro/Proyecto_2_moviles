@@ -58,14 +58,14 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+		//shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
 
 		batch.draw(screen,0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		batch.draw(img,plano_x,plano_y,width,height);
 		rectangle = new Rectangle();
 		//shapeRenderer.setColor(Color.BLUE);
-		shapeRenderer.rect(plano_x,plano_y,width,height);
+		//shapeRenderer.rect(plano_x,plano_y,width,height);
 
 		if(!(plano_y < -190)){
 			plano_x=plano_x -3;
@@ -73,7 +73,7 @@ public class MyGdxGame extends ApplicationAdapter {
 			width = width + 5;
 			height = height + 10;
 		}
-
+		/*
 		if(Gdx.input.isTouched()){
 			Vector3 touch = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 			Vector2 touch1 = new Vector2(Gdx.input.getX(),Gdx.input.getY());
@@ -93,7 +93,7 @@ public class MyGdxGame extends ApplicationAdapter {
 			}
 		}
 
-		shapeRenderer.end();
+		shapeRenderer.end();*/
 		batch.end();
 
 	}

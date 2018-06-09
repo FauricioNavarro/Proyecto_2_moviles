@@ -52,7 +52,7 @@ public class Achievement_adapter extends BaseAdapter {
         TextView nickname = vistaItem.findViewById(R.id.txt_name_achievement);
         TextView email = vistaItem.findViewById(R.id.txt_description_achievement);
 
-        imageView.setImageResource(R.drawable.user_icon);
+        imageView.setImageResource(R.drawable.achievement_icon);
         nickname.setText("Name: "+arrayItems.get(position).getName());
         email.setText("Description: "+arrayItems.get(position).getDescription());
 
