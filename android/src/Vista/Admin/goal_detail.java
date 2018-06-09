@@ -11,15 +11,15 @@ import android.widget.Toast;
 
 import com.mygdx.game.R;
 
-public class user_detail extends AppCompatActivity {
+public class goal_detail extends AppCompatActivity {
     private android.support.v7.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goal_detail);
+        setContentView(R.layout.activity_user_detail);
         toolbar = findViewById(R.id.toolbar_goal);
-        toolbar.setTitle(R.string.user_det);
+        toolbar.setTitle(R.string.goal_det);
         toolbar.setBackgroundColor(getResources().getColor(R.color.gray));
         toolbar.setTitleTextColor(getResources().getColor(R.color.blanco));
         setSupportActionBar(toolbar);

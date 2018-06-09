@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
+import Vista.Player.playerActivity;
 import com.mygdx.game.AndroidLauncher;
 import com.mygdx.game.R;
 
@@ -29,7 +29,7 @@ public class login extends AppCompatActivity {
     }
 
     public void temp(View v){
-        Intent  intent = new Intent(getApplicationContext(),AndroidLauncher.class);
+        Intent  intent = new Intent(getApplicationContext(),playerActivity.class);
         startActivity(intent);
     }
 }

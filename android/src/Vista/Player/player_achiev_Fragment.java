@@ -1,7 +1,8 @@
-package Vista.Admin;
+package Vista.Player;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -17,11 +18,10 @@ import java.util.ArrayList;
 
 import Controlador.Achievement_adapter;
 import Modelo.Achievement;
+import Vista.Admin.add_achievement;
 
-
-public class achievementFragment extends Fragment {
+public class player_achiev_Fragment extends Fragment {
     private View rootview;
-    private FloatingActionButton new_achievement;
     private ListView achievement;
     private Achievement_adapter adapter;
     private ArrayList<Achievement> ArrayItem = null;
@@ -35,18 +35,9 @@ public class achievementFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.fragment_achievement,container,false);
-        achievement = rootview.findViewById(R.id.LV_achievement);
-        new_achievement = rootview.findViewById(R.id.FB_add_achivement);
+        rootview = inflater.inflate(R.layout.fragment_player_achiev_,container,false);
+        achievement = rootview.findViewById(R.id.ply_LV_achievement);
         ArrayItem = new ArrayList<>();
-
-        new_achievement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(),add_achievement.class);
-                startActivity(intent);
-            }
-        });
 
         achievement.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

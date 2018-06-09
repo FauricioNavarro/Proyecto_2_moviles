@@ -1,4 +1,4 @@
-package Vista.Admin;
+package Vista.Player;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,14 +17,12 @@ import com.mygdx.game.R;
 import java.util.ArrayList;
 
 import Controlador.Challenge_adapter;
-import Controlador.User_adapter;
 import Modelo.Challenge;
-import Modelo.User;
+import Vista.Admin.add_challenge;
+import Vista.Admin.goal_list;
 
-
-public class challengeFragment extends Fragment {
+public class player_challenge_Fragment extends Fragment {
     private View rootview;
-    private FloatingActionButton new_challenge;
     private ListView challenges;
     private Challenge_adapter adapter;
     private ArrayList<Challenge> ArrayItem = null;
@@ -38,23 +36,14 @@ public class challengeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.fragment_challenge,container,false);
-        challenges = rootview.findViewById(R.id.LV_challenge);
-        new_challenge = rootview.findViewById(R.id.FB_add_challenge);
+        rootview = inflater.inflate(R.layout.fragment_player_challenge_,container,false);
+        challenges = rootview.findViewById(R.id.ply_LV_challenge);
         ArrayItem = new ArrayList<>();
-
-        new_challenge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(),add_challenge.class);
-                startActivity(intent);
-            }
-        });
 
         challenges.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getContext(),goal_list.class);
+                Intent intent = new Intent(getContext(),goal_listply_Activity.class);
                 startActivity(intent);
             }
         });

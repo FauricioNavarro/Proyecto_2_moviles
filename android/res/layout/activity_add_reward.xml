@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    tools:context="Vista.Admin.add_reward">
+    tools:context="Vista.Admin.add_achievement">
 
     <EditText
         style="@style/txt_style"

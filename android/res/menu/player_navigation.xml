@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ply_navigation_challenges"
+        android:icon="@drawable/challenge_icon_1"
+        android:title="@string/title_challenges" />
+
+    <item
+        android:id="@+id/ply_navigation_achievements"
+        android:icon="@drawable/achievement_icon"
+        android:title="@string/title_points" />
+
+</menu>

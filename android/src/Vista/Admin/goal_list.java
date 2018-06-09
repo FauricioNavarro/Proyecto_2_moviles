@@ -29,17 +29,25 @@ public class goal_list extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_list);
+        new_goal = findViewById(R.id.FB_add_goal);
         goals = findViewById(R.id.LV_goal);
         ArrayItem = new ArrayList<>();
 
-        goals.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        new_goal.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(),user_detail.class);
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),add_goal.class);
                 startActivity(intent);
             }
         });
 
+        goals.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent= new Intent(getApplicationContext(),goal_detail.class);
+                startActivity(intent);
+            }
+        });
 
         cargarLista(this);
     }

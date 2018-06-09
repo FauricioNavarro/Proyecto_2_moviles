@@ -54,7 +54,7 @@ public class Goal_adapter extends BaseAdapter {
         TextView points = vistaItem.findViewById(R.id.txt_point_goal);
         TextView type = vistaItem.findViewById(R.id.txt_type_goal);
 
-        imageView.setImageResource(R.drawable.user_icon_1);
+        imageView.setImageResource(R.drawable.goal_icon);
         name.setText("Name: "+arrayItems.get(position).getName());
         points.setText("Points: "+arrayItems.get(position).getPoints());
         type.setText("Type: "+arrayItems.get(position).getType());
