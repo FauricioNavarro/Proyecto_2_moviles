@@ -51,6 +51,25 @@ public class Dao_api extends AsyncTask<String,Void,String> {
             case "single_user":{
                 output = getRequest(url+"users/"+strings[1],Controller.getInstance().getToken());
             }break;
+            case "put_user":{
+                JSONObject player = new JSONObject();
+                try {
+                    //player.put("mail", strings[1]);
+                    player.put("password", strings[2]);
+                    player.put("name", strings[3]);
+                    player.put("challenges_completed", strings[4]);
+                    player.put("points", strings[5]);
+                    player.put("zombies_killed", strings[6]);
+                    player.put("run_aways", strings[7]);
+                    player.put("type_id", strings[8]);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                output = putRequest(url+"users/"+strings[1],String.valueOf(player),Controller.getInstance().getToken());
+            }break;
+            case "delete_user":{
+                output = deleteRequest(url+"users/"+strings[1],Controller.getInstance().getToken());
+            }break;
             case "achiev":{
                 output = getRequest(url+"achievements/",Controller.getInstance().getToken());
             }break;
@@ -95,4 +114,37 @@ public class Dao_api extends AsyncTask<String,Void,String> {
         }
         return res;
     }
+
+    public String putRequest(String url,String content,String auth){
+        String res = null;
+        try {
+            HttpResponse<String> response = Unirest.put(url)
+                    .header("content-type", "application/json")
+                    .header("Authorization", auth)
+                    .header("Cache-Control", "no-cache")
+                    .body(content)
+                    .asString();
+            res = response.getBody().toString();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public String deleteRequest(String url,String auth){
+        String res = null;
+        try {
+            HttpResponse<String> response = Unirest.put(url)
+                    .header("content-type", "application/json")
+                    .header("Cache-Control", "no-cache")
+                    .header("Authorization", auth)
+                    .asString();
+            res = response.getBody().toString();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+
 }

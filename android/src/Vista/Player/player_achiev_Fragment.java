@@ -14,9 +14,14 @@ import android.widget.ListView;
 
 import com.mygdx.game.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import Controlador.Achievement_adapter;
+import Controlador.Controller;
 import Modelo.Achievement;
 import Vista.Admin.add_achievement;
 
@@ -60,9 +65,17 @@ public class player_achiev_Fragment extends Fragment {
     }
 
     public void cargarLista(Context context){
-        for(int i = 0 ; i<12;i++){
-            String msj = "Achievement"+String.valueOf(i);
-            ArrayItem.add(new Achievement(i,msj,msj));
+        JSONArray array = Controller.getInstance().getAchievements();
+        for(int i = 0;i<array.length();i++){
+            try {
+                JSONObject object = (JSONObject) array.getJSONObject(i);
+                int id = object.getInt("id");
+                String name = object.getString("name");
+                String description = object.getString("description");
+                ArrayItem.add(new Achievement(id,name,description));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         adapter = new Achievement_adapter(ArrayItem, context);
         achievement.setAdapter(adapter);

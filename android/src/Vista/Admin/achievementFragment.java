@@ -76,7 +76,6 @@ public class achievementFragment extends Fragment {
     }
 
     public void cargarLista(Context context){
-        /*
         JSONArray array = Controller.getInstance().getAchievements();
         for(int i = 0;i<array.length();i++){
             try {
@@ -88,10 +87,6 @@ public class achievementFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }*/
-        for(int i = 0 ; i<12;i++){
-            String msj = "Achievement"+String.valueOf(i);
-            ArrayItem.add(new Achievement(i,msj,msj));
         }
         adapter = new Achievement_adapter(ArrayItem, context);
         achievement.setAdapter(adapter);

@@ -140,6 +140,45 @@ public class Controller {
         return output;
     }
 
+    public String put_user(String mail_temp,String name_temp,String pass_temp,String run,
+                String type,String challenges_completed,String points_temp,String zombies_killed){
+        String out = null;
+        try {
+            out = new Dao_api().execute("put_user",mail_temp,pass_temp,name_temp,challenges_completed,points_temp,zombies_killed,run,type).get();
+            /*
+            String output_temp = new Dao_api().execute("put_user",mail_temp,pass_temp,name_temp,challenges_completed,points_temp,zombies_killed,run,type).get();
+            JSONObject jsonObject = new JSONObject(output_temp);
+            String state = jsonObject.getString("status");
+            if(state.equals("success")){
+                out = jsonObject.getJSONObject("data").toString();
+                Log.i("REQUEST->",out);
+            }*/
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return out;
+    }
+
+    public String delete_users(String mail){
+        String output = null;
+        try {
+            output = new Dao_api().execute("delete_user",mail).get();
+            /*
+            String output_temp = new Dao_api().execute("delete_user").get();
+            JSONObject jsonObject = new JSONObject(output_temp);
+            String state = jsonObject.getString("status");
+            if(state.equals("success")){
+                output = jsonObject.getJSONArray("data").toString();
+            }*/
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
     //-------------- Achievements --------------
 
     public String get_achievs(){

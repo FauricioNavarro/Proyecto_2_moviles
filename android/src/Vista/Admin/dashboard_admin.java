@@ -10,6 +10,8 @@ import android.view.MenuItem;
 
 import com.mygdx.game.R;
 
+import Controlador.Controller;
+
 public class dashboard_admin extends AppCompatActivity {
 
 
@@ -39,7 +41,7 @@ public class dashboard_admin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_admin);
-
+        Controller.getInstance().load_achievements();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fr_contenedor,new user()).commit();
