@@ -11,13 +11,13 @@
     <ImageView
         android:id="@+id/img_logo"
         android:layout_gravity="center_horizontal"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:background="@drawable/logo"/>
 
     <EditText
         style="@style/txt_style"
-        android:id="@+id/txt_email"
+        android:id="@+id/txt_email_login"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:hint="@string/email" />
@@ -25,7 +25,7 @@
     <!--style="@style/text_style"-->
     <EditText
         style="@style/txt_style_2"
-        android:id="@+id/txt_password"
+        android:id="@+id/txt_password_login"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="30dp"

@@ -31,6 +31,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    repositories {
+        maven {
+            url 'https://raw.github.com/zeeshanejaz/unirest-android/mvn-repo'
+        }
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
     dependencies {
         implementation 'com.android.support:appcompat-v7:27.+'
         implementation 'com.android.support.constraint:constraint-layout:+'
@@ -40,6 +48,8 @@ android {
         implementation "com.android.support:support-core-utils:27.+"
         implementation 'com.android.support:support-v4:27.+'
         implementation 'com.google.android.gms:play-services-maps:+'
+        implementation 'com.mashape.unirest:unirest-android:1.0+'
+        implementation 'com.android.support:support-v4:27.1.1'
     }
 }
 
@@ -141,11 +151,5 @@ idea {
             }
         }
     }
-}
-dependencies {
-    implementation 'com.android.support:design:27.+'
-    implementation 'com.android.support.constraint:constraint-layout:+'
-    implementation 'com.android.support:support-vector-drawable:27.+'
-    implementation 'com.android.support:support-v4:27.1.1'
 }
 
