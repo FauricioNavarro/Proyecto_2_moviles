@@ -48,10 +48,15 @@ android {
         implementation "com.android.support:support-core-utils:27.+"
         implementation 'com.android.support:support-v4:27.+'
         implementation 'com.google.android.gms:play-services-maps:+'
+        implementation 'com.google.firebase:firebase-auth:15.0.0'
+        compile 'com.google.firebase:firebase-auth:15.0.0'
+        compile 'com.google.android.gms:play-services-auth:15.0.0'
         implementation 'com.mashape.unirest:unirest-android:1.0+'
         implementation 'com.android.support:support-v4:27.1.1'
     }
 }
+
+apply plugin: 'com.google.gms.google-services'
 
 // called every time gradle gets executed, takes the native dependencies of
 // the natives configuration, and extracts them to the proper libs/ folders
@@ -66,11 +71,11 @@ task copyAndroidNatives() {
     configurations.natives.files.each { jar ->
         def outputDir = null
         if (jar.name.endsWith("natives-arm64-v8a.jar")) outputDir = file("libs/arm64-v8a")
-        if (jar.name.endsWith("natives-armeabi-v7a.jar")) outputDir = file("libs/armeabi-v7a")        
-        if(jar.name.endsWith("natives-armeabi.jar")) outputDir = file("libs/armeabi")
-        if(jar.name.endsWith("natives-x86_64.jar")) outputDir = file("libs/x86_64")
-        if(jar.name.endsWith("natives-x86.jar")) outputDir = file("libs/x86")
-        if(outputDir != null) {
+        if (jar.name.endsWith("natives-armeabi-v7a.jar")) outputDir = file("libs/armeabi-v7a")
+        if (jar.name.endsWith("natives-armeabi.jar")) outputDir = file("libs/armeabi")
+        if (jar.name.endsWith("natives-x86_64.jar")) outputDir = file("libs/x86_64")
+        if (jar.name.endsWith("natives-x86.jar")) outputDir = file("libs/x86")
+        if (outputDir != null) {
             copy {
                 from zipTree(jar)
                 into outputDir

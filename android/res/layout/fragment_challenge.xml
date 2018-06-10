@@ -4,6 +4,42 @@
     android:layout_height="match_parent"
     tools:context="Vista.Admin.challengeFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@android:drawable/ic_menu_search"
+                android:focusable="false"
+                android:hint="Buscar Reto"
+                android:inputType="textPersonName" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.05"
+                android:background="@android:color/transparent"
+                android:src="@mipmap/ic_logout" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/LV_challenge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></ListView>
+    </LinearLayout>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/FB_add_challenge"
         android:layout_width="wrap_content"
@@ -12,9 +48,6 @@
         android:layout_margin="16dp"
         android:src="@drawable/ic_add_black_24dp" />
 
-    <ListView
-        android:id="@+id/LV_challenge"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+
 
 </FrameLayout>
