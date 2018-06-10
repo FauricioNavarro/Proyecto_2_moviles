@@ -31,6 +31,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    repositories {
+        maven {
+            url 'https://raw.github.com/zeeshanejaz/unirest-android/mvn-repo'
+        }
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
     dependencies {
         implementation 'com.android.support:appcompat-v7:27.+'
         implementation 'com.android.support.constraint:constraint-layout:+'
@@ -43,6 +51,8 @@ android {
         implementation 'com.google.firebase:firebase-auth:15.0.0'
         compile 'com.google.firebase:firebase-auth:15.0.0'
         compile 'com.google.android.gms:play-services-auth:15.0.0'
+        implementation 'com.mashape.unirest:unirest-android:1.0+'
+        implementation 'com.android.support:support-v4:27.1.1'
     }
 }
 
@@ -111,9 +121,8 @@ eclipse {
         sourceCompatibility = 1.6
         targetCompatibility = 1.6
     }
-    classpath {
-        plusConfigurations += [project.configurations.compile]
-        containers 'com.android.ide.eclipse.adt.ANDROID_FRAMEWORK', 'com.android.ide.eclipse.adt.LIBRARIES'
+        classpath {plusConfigurations +=[project.configurations.compile]        
+        containers 'com.android.ide.eclipse.adt.ANDROID_FRAMEWORK', 'com.android.ide.eclipse.adt.LIBRARIES'       
     }
 
     project {
@@ -130,7 +139,7 @@ eclipse {
 // sets up the Android Idea project, using the old Ant based build.
 idea {
     module {
-        sourceDirs += file("src"); scopes = [COMPILE: [plus: [project.configurations.compile]]]
+        sourceDirs += file( "src" );scopes =[ COMPILE: [plus: [project.configurations.compile]]]        
 
         iml {
             withXml {

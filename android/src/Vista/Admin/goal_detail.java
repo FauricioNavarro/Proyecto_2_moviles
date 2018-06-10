@@ -7,36 +7,22 @@ import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mygdx.game.R;
 
-import Controlador.Controller;
-
-public class user_detail extends AppCompatActivity {
+public class goal_detail extends AppCompatActivity {
     private android.support.v7.widget.Toolbar toolbar;
-    private TextView mail;
-    private EditText name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goal_detail);
-        mail = findViewById(R.id.txt_email_dt);
-        name = findViewById(R.id.txt_nickname_dt);
+        setContentView(R.layout.activity_user_detail);
         toolbar = findViewById(R.id.toolbar_goal);
-        toolbar.setTitle(R.string.user_det);
+        toolbar.setTitle(R.string.goal_det);
         toolbar.setBackgroundColor(getResources().getColor(R.color.gray));
         toolbar.setTitleTextColor(getResources().getColor(R.color.blanco));
         setSupportActionBar(toolbar);
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            String mail_aux = extras.getString("mail");
-            String out = Controller.getInstance().get_single_user(mail_aux);
-            Toast.makeText(this,out,Toast.LENGTH_LONG).show();
-        }
     }
 
 

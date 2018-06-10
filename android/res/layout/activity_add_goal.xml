@@ -5,45 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_vertical"
-    tools:context="Vista.signIn">
-
-    <ImageView
-        android:id="@+id/img_logo"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/logo"/>
+    tools:context="Vista.Admin.goal_detail">
 
     <EditText
         style="@style/txt_style"
-        android:id="@+id/txt_nickname_sign"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="@string/nickname" />
-
-    <EditText
-        style="@style/txt_style"
-        android:id="@+id/txt_email_sign"
+        android:id="@+id/txt_name_goal"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:hint="@string/email" />
 
-    <!--style="@style/text_style"-->
     <EditText
-        style="@style/txt_style"
-        android:id="@+id/txt_password_sign"
+        style="@style/txt_style_2"
+        android:id="@+id/txt_latitud_goal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:hint="@string/password" />
+
+    <EditText
+        style="@style/txt_style_2"
+        android:id="@+id/txt_longitude_goal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:hint="@string/password" />
+
+    <EditText
+        style="@style/txt_style_2"
+        android:id="@+id/txt_points_goal"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="30dp"
         android:hint="@string/password" />
 
     <Button
-        style="@style/txt_style"
+        android:text="@string/btn_add"
         android:layout_width="match_parent"
+        android:textSize="25sp"
+        android:textAlignment="center"
         android:layout_height="50dp"
-        android:text="@string/btn_signin"
-        android:onClick="signIn"/>
+        android:onClick="add_goal"/>
 
 </LinearLayout>

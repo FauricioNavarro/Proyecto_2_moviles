@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_vertical"
-    tools:context="Vista.Admin.user_detail">
+    tools:context="Vista.Admin.goal_detail">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_user"
+        android:id="@+id/toolbar_goal"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:elevation="4dp"
@@ -23,19 +22,40 @@
         android:orientation="vertical"
         android:gravity="center_vertical">
 
-        <TextView
+        <EditText
             style="@style/txt_style"
-            android:id="@+id/txt_email_dt"
+            android:id="@+id/txt_name_goal"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="@string/email" />
 
         <EditText
             style="@style/txt_style_2"
-            android:id="@+id/txt_nickname_dt"
+            android:id="@+id/txt_latitud_goal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/password" />
+
+        <EditText
+            style="@style/txt_style_2"
+            android:id="@+id/txt_longitude_goal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/password" />
+
+        <EditText
+            style="@style/txt_style_2"
+            android:id="@+id/txt_points_goal"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="30dp"
-            android:hint="@string/nickname" />
+            android:hint="@string/password" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:onClick="add_goal"/>
     </LinearLayout>
 </LinearLayout>

@@ -13,7 +13,7 @@
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
+         location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -26,7 +26,7 @@
             android:name=".AndroidLauncher"
             android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize"
             android:label="@string/app_name"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="portrait" />
         <activity
             android:name="Vista.login"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -48,19 +48,20 @@
             android:name="Vista.Admin.add_challenge"
             android:theme="@style/Theme.AppCompat" />
         <activity
-            android:name="Vista.Admin.add_reward"
+            android:name="Vista.Admin.add_achievement"
             android:theme="@style/Theme.AppCompat" />
         <activity
             android:name="Vista.Admin.user_detail"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".challenge_detail" />
+        <activity android:name="Vista.Admin.goal_detail"
+            android:theme="@style/Theme.AppCompat"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
              Note that the API key is linked to the encryption key used to sign the APK.
              You need a different API key for each encryption key, including the release key that is used to
              sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -68,7 +69,20 @@
 
         <activity
             android:name="Vista.Player.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name="Vista.Admin.goal_list"
+            android:theme="@style/Theme.AppCompat" />
+        <activity android:name="Vista.Admin.add_goal"
+            android:theme="@style/Theme.AppCompat"/>
+        <activity android:name="Vista.Admin.achievement_detail"
+            android:theme="@style/Theme.AppCompat"/>
+        <activity
+            android:name="Vista.Player.playerActivity"
+            android:label="@string/title_activity_player"
+            android:theme="@style/Theme.AppCompat"/>
+        <activity android:name="Vista.Player.goal_listply_Activity"
+            android:theme="@style/Theme.AppCompat"></activity>
     </application>
 
 </manifest>

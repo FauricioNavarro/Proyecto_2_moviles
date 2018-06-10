@@ -2,17 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_users"
-        android:icon="@drawable/user_icon_1"
-        android:title="@string/title_users" />
-
-    <item
-        android:id="@+id/navigation_challenges"
+        android:id="@+id/ply_navigation_challenges"
         android:icon="@drawable/challenge_icon_1"
         android:title="@string/title_challenges" />
 
     <item
-        android:id="@+id/navigation_achievements"
+        android:id="@+id/ply_navigation_achievements"
         android:icon="@drawable/achievement_icon"
         android:title="@string/title_points" />
 

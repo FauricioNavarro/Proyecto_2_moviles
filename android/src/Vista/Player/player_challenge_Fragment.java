@@ -1,4 +1,4 @@
-package Vista.Admin;
+package Vista.Player;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,12 +18,12 @@ import java.util.ArrayList;
 
 import Controlador.Challenge_adapter;
 import Modelo.Challenge;
+import Vista.Admin.add_challenge;
+import Vista.Admin.goal_list;
 
-
-public class rewardFragment extends Fragment {
+public class player_challenge_Fragment extends Fragment {
     private View rootview;
-    private FloatingActionButton new_reward;
-    private ListView rewards;
+    private ListView challenges;
     private Challenge_adapter adapter;
     private ArrayList<Challenge> ArrayItem = null;
 
@@ -36,25 +36,18 @@ public class rewardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.fragment_reward,container,false);
-        rewards = rootview.findViewById(R.id.LV_reward);
-        new_reward = rootview.findViewById(R.id.FB_add_reward);
+        rootview = inflater.inflate(R.layout.fragment_player_challenge_,container,false);
+        challenges = rootview.findViewById(R.id.ply_LV_challenge);
         ArrayItem = new ArrayList<>();
 
-        new_reward.setOnClickListener(new View.OnClickListener() {
+        challenges.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(),add_reward.class);
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getContext(),goal_listply_Activity.class);
                 startActivity(intent);
             }
         });
 
-        rewards.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });
         cargarLista(rootview.getContext());
         return rootview;
     }
@@ -71,10 +64,10 @@ public class rewardFragment extends Fragment {
 
     public void cargarLista(Context context){
         for(int i = 0 ; i<12;i++){
-            String msj = "Reward"+String.valueOf(i);
+            String msj = "Challenge"+String.valueOf(i);
             ArrayItem.add(new Challenge(msj,msj));
         }
         adapter = new Challenge_adapter(ArrayItem, context);
-        rewards.setAdapter(adapter);
+        challenges.setAdapter(adapter);
     }
 }

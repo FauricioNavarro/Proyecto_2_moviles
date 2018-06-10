@@ -11,18 +11,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.mygdx.game.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
+import Controlador.Controller;
 import Controlador.User_adapter;
 import Modelo.User;
 
 
 public class user extends Fragment {
     private View rootview;
-    private FloatingActionButton new_user;
     private ListView users;
     private User_adapter adapter;
     private ArrayList<User> ArrayItem = null;
@@ -43,10 +48,13 @@ public class user extends Fragment {
         users.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                User user_temp = ArrayItem.get(i);
                 Intent intent = new Intent(getContext(),user_detail.class);
+                intent.putExtra("mail",user_temp.getEmail());
                 startActivity(intent);
             }
         });
+
 
 
         cargarLista(rootview.getContext());
@@ -64,9 +72,16 @@ public class user extends Fragment {
     }
 
     public void cargarLista(Context context){
-        for(int i = 0 ; i<12;i++){
-            String msj = "User"+String.valueOf(i);
-            ArrayItem.add(new User(msj,msj));
+        JSONArray array = Controller.getInstance().getUsers();
+        for(int i = 0;i<array.length();i++){
+            try {
+                JSONObject object = (JSONObject) array.getJSONObject(i);
+                String nickname = object.getString("name");
+                String email = object.getString("mail");
+                ArrayItem.add(new User(nickname,email));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         adapter = new User_adapter(ArrayItem, context);
         users.setAdapter(adapter);
