@@ -44,7 +44,13 @@ public class login extends AppCompatActivity {
     FirebaseAuth mAuth;
     private final static int RC_SIGN_IN = 2;
     GoogleApiClient mGoogleApiClient;
+    FirebaseAuth.AuthStateListener mAuthListener;
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +60,14 @@ public class login extends AppCompatActivity {
         password1 = findViewById(R.id.txt_password_login);
         mAuth = FirebaseAuth.getInstance();
 
-
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() != null){
+                    startActivity(new Intent(login.this,dashboard_admin.class));
+                }
+            }
+        };
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -168,7 +181,8 @@ public class login extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Log.d("TAG", user.getEmail() + user.getDisplayName());
+                            //Se puede obtener el correo para saber si es o no admin y redirigir la app.
+                            //Log.d("TAG", user.getEmail() + user.getDisplayName());
                             startActivity(new Intent(login.this,dashboard_admin.class));
                             //updateUI(user);
                         } else {
