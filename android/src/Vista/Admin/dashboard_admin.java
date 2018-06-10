@@ -42,6 +42,7 @@ public class dashboard_admin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_admin);
         Controller.getInstance().load_achievements();
+        Controller.getInstance().load_challenges();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fr_contenedor,new user()).commit();

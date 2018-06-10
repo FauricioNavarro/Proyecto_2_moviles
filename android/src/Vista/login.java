@@ -34,13 +34,14 @@ public class login extends AppCompatActivity {
         //String mail_aux = mail1.getText().toString();
         //String pass_aux = password1.getText().toString();
         String mail_aux = "admin@mail.com";
-        String pass_aux = "a1234";
+        String pass_aux = "admin";
         if(!mail_aux.equals("") && !pass_aux.equals("")){
             String res = Controller.getInstance().login(mail_aux,pass_aux);
             try {
+                Toast.makeText(getApplicationContext(),res,Toast.LENGTH_LONG).show();
                 JSONObject player = new JSONObject(res);
                 String state = player.getJSONObject("data").getString("type_id");
-                //Toast.makeText(getApplicationContext(),state,Toast.LENGTH_LONG).show();
+
                 SharedPreferences.Editor sharedPreferences =
                         getSharedPreferences("myref", Context.MODE_PRIVATE).edit();
                 String token = player.getString("token");

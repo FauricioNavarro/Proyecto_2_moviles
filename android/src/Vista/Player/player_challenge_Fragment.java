@@ -65,7 +65,7 @@ public class player_challenge_Fragment extends Fragment {
     public void cargarLista(Context context){
         for(int i = 0 ; i<12;i++){
             String msj = "Challenge"+String.valueOf(i);
-            ArrayItem.add(new Challenge(msj,msj));
+            ArrayItem.add(new Challenge(i,msj,msj));
         }
         adapter = new Challenge_adapter(ArrayItem, context);
         challenges.setAdapter(adapter);

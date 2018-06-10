@@ -23,7 +23,8 @@ public class user_detail extends AppCompatActivity {
     private android.support.v7.widget.Toolbar toolbar;
     private TextView mail,kills,challengs,points;
     private EditText name;
-    private String mail_temp,name_temp,pass_temp,run,type,challenges_completed,points_temp,zombies_killed;
+    private String mail_temp,name_temp,pass_temp,run_temp
+            ,type_temp,challenges_completed,points_temp,zombies_killed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +51,8 @@ public class user_detail extends AppCompatActivity {
                 mail_temp = jsonObject.getString("mail");
                 name_temp = jsonObject.getString("name");
                 pass_temp = jsonObject.getString("password");
-                run = jsonObject.getString("run_aways");
-                type = jsonObject.getString("type_id");
+                run_temp = jsonObject.getString("run_aways");
+                type_temp = jsonObject.getString("type_id");
                 challenges_completed = jsonObject.getString("challenges_completed");
                 points_temp = jsonObject.getString("points");
                 zombies_killed = jsonObject.getString("zombies_killed");
@@ -84,12 +85,17 @@ public class user_detail extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.editar:
-                Controller.getInstance().put_user(mail_temp,name_temp,pass_temp,run,type,challenges_completed,points_temp,zombies_killed);
+                String out = Controller.getInstance().put_user(mail_temp,name_temp,pass_temp,run_temp,type_temp,
+                        challenges_completed,points_temp,zombies_killed);
+                Log.i("Edit->",out);
                 Toast.makeText(getApplicationContext(), "Edit", Toast.LENGTH_SHORT).show();
+                Controller.getInstance().load_user();
                 return true;
             case R.id.eliminar:
-                Controller.getInstance().delete_users(mail_temp);
+                String out1 = Controller.getInstance().delete_users(mail_temp);
+                Log.i("Delete->",out1);
                 Toast.makeText(getApplicationContext(), "Delete", Toast.LENGTH_SHORT).show();
+                Controller.getInstance().load_user();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

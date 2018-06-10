@@ -33,7 +33,7 @@ public class Dao_api extends AsyncTask<String,Void,String> {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                output = postRequest(url+"users",String.valueOf(player));
+                output = postRequest(url+"users",String.valueOf(player),null);
             }break;
             case "login":{
                 JSONObject player = new JSONObject();
@@ -43,7 +43,7 @@ public class Dao_api extends AsyncTask<String,Void,String> {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                output = postRequest(url_auth+"ingresar",String.valueOf(player));
+                output = postRequest(url_auth+"ingresar",String.valueOf(player),null);
             }break;
             case "users":{
                 output = getRequest(url+"users/",null);
@@ -52,23 +52,41 @@ public class Dao_api extends AsyncTask<String,Void,String> {
                 output = getRequest(url+"users/"+strings[1],Controller.getInstance().getToken());
             }break;
             case "put_user":{
-                JSONObject player = new JSONObject();
+                JSONObject put_player = new JSONObject();
                 try {
-                    //player.put("mail", strings[1]);
-                    player.put("password", strings[2]);
-                    player.put("name", strings[3]);
-                    player.put("challenges_completed", strings[4]);
-                    player.put("points", strings[5]);
-                    player.put("zombies_killed", strings[6]);
-                    player.put("run_aways", strings[7]);
-                    player.put("type_id", strings[8]);
+                    put_player.put("mail", strings[1]);
+                    put_player.put("password", strings[2]);
+                    put_player.put("name", strings[3]);
+                    put_player.put("challenges_completed", strings[4]);
+                    put_player.put("points", strings[5]);
+                    put_player.put("zombies_killed", strings[6]);
+                    put_player.put("run_aways", strings[7]);
+                    put_player.put("type_id", strings[8]);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                output = putRequest(url+"users/"+strings[1],String.valueOf(player),Controller.getInstance().getToken());
+                output = putRequest(url+"users/"+strings[1],Controller.getInstance().getToken(),String.valueOf(put_player));
             }break;
             case "delete_user":{
                 output = deleteRequest(url+"users/"+strings[1],Controller.getInstance().getToken());
+            }break;
+            case "add_challenge":{
+                JSONObject challenge = new JSONObject();
+                try {
+                    challenge.put("name", strings[1]);
+                    challenge.put("description", strings[2]);
+                    challenge.put("latitud_inicial", strings[3]);
+                    challenge.put("longitud_inicial", strings[4]);
+                    challenge.put("latitud_final", strings[5]);
+                    challenge.put("longitud_final", strings[6]);
+                    challenge.put("zombies_probability", strings[7]);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                output = postRequest(url+"challenges/",String.valueOf(challenge),Controller.getInstance().getToken());
+            }break;
+            case "challenges":{
+                output = getRequest(url+"challenges/",Controller.getInstance().getToken());
             }break;
             case "achiev":{
                 output = getRequest(url+"achievements/",Controller.getInstance().getToken());
@@ -77,15 +95,25 @@ public class Dao_api extends AsyncTask<String,Void,String> {
         return output;
     }
 
-    public String postRequest(String path,String content){
+    public String postRequest(String path,String content,String auth){
         String res = null;
         try {
-            HttpResponse<String> response = Unirest.post(path)
-                    .header("content-type", "application/json")
-                    .header("cache-control", "no-cache")
-                    .body(content)
-                    .asString();
-            res = response.getBody().toString();
+            if(auth==null){
+                HttpResponse<String> response = Unirest.post(path)
+                        .header("content-type", "application/json")
+                        .header("cache-control", "no-cache")
+                        .body(content)
+                        .asString();
+                res = response.getBody().toString();
+            }else{
+                HttpResponse<String> response = Unirest.post(path)
+                        .header("content-type", "application/json")
+                        .header("cache-control", "no-cache")
+                        .header("Authorization", auth)
+                        .body(content)
+                        .asString();
+                res = response.getBody().toString();
+            }
         } catch (UnirestException e) {
             e.printStackTrace();
         }
@@ -115,13 +143,13 @@ public class Dao_api extends AsyncTask<String,Void,String> {
         return res;
     }
 
-    public String putRequest(String url,String content,String auth){
+    public String putRequest(String url,String auth,String content){
         String res = null;
         try {
             HttpResponse<String> response = Unirest.put(url)
                     .header("content-type", "application/json")
-                    .header("Authorization", auth)
                     .header("Cache-Control", "no-cache")
+                    .header("Authorization", auth)
                     .body(content)
                     .asString();
             res = response.getBody().toString();
@@ -134,8 +162,8 @@ public class Dao_api extends AsyncTask<String,Void,String> {
     public String deleteRequest(String url,String auth){
         String res = null;
         try {
-            HttpResponse<String> response = Unirest.put(url)
-                    .header("content-type", "application/json")
+            HttpResponse<String> response = Unirest.delete(url)
+                    .header("Content-Type", "application/x-www-form-urlencoded")
                     .header("Cache-Control", "no-cache")
                     .header("Authorization", auth)
                     .asString();

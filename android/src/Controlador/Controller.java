@@ -23,6 +23,7 @@ public class Controller {
     private String ref = "Myref";
     private JSONArray users;
     private JSONArray achievements;
+    private JSONArray challenges;
     private String token;
 
     private Controller() {
@@ -42,12 +43,37 @@ public class Controller {
         }
     }
 
+    public void load_challenges(){
+        try {
+            challenges =  new JSONArray(get_challenges());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void load_user(){
+        try {
+            users = new JSONArray(get_users());
+            //achievements = new JSONArray(get_achievs());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     public JSONArray getAchievements() {
         return achievements;
     }
 
     public void setAchievements(JSONArray achievements) {
         this.achievements = achievements;
+    }
+
+    public JSONArray getChallenges() {
+        return challenges;
+    }
+
+    public void setChallenges(JSONArray challenges) {
+        this.challenges = challenges;
     }
 
     public String getToken() {
@@ -144,6 +170,7 @@ public class Controller {
                 String type,String challenges_completed,String points_temp,String zombies_killed){
         String out = null;
         try {
+            Log.i("Edit->",mail_temp+"-"+pass_temp+"-"+name_temp+"-"+challenges_completed+"-"+points_temp+"-"+zombies_killed+"-"+run+"-"+type);
             out = new Dao_api().execute("put_user",mail_temp,pass_temp,name_temp,challenges_completed,points_temp,zombies_killed,run,type).get();
             /*
             String output_temp = new Dao_api().execute("put_user",mail_temp,pass_temp,name_temp,challenges_completed,points_temp,zombies_killed,run,type).get();
@@ -195,6 +222,41 @@ public class Controller {
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    //-------------- Challenges --------------
+
+    public String get_challenges(){
+        String output = null;
+        try {
+            String output_temp = new Dao_api().execute("challenges").get();
+            JSONObject jsonObject = new JSONObject(output_temp);
+            String state = jsonObject.getString("status");
+            if(state.equals("success")){
+                output = jsonObject.getJSONArray("data").toString();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    public String add_challenge(String name,String description,String latitud_inicial,String longitud_inicial,
+                                String latitud_final,String longitud_final,String zombies_probability){
+        String output = null;
+        try {
+            new Dao_api().execute("add_challenge",name,description,latitud_inicial,longitud_inicial,
+                    latitud_final,longitud_final,zombies_probability).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
             e.printStackTrace();
         }
         return output;

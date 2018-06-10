@@ -14,9 +14,14 @@ import android.widget.ListView;
 
 import com.mygdx.game.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import Controlador.Challenge_adapter;
+import Controlador.Controller;
 import Controlador.User_adapter;
 import Modelo.Challenge;
 import Modelo.User;
@@ -74,9 +79,17 @@ public class challengeFragment extends Fragment {
     }
 
     public void cargarLista(Context context){
-        for(int i = 0 ; i<12;i++){
-            String msj = "Challenge"+String.valueOf(i);
-            ArrayItem.add(new Challenge(msj,msj));
+        JSONArray array = Controller.getInstance().getChallenges();
+        for(int i = 0;i<array.length();i++){
+            try {
+                JSONObject object = (JSONObject) array.getJSONObject(i);
+                int id = object.getInt("id");
+                String name = object.getString("name");
+                String des = object.getString("description");
+                ArrayItem.add(new Challenge(id,name,des));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         adapter = new Challenge_adapter(ArrayItem, context);
         challenges.setAdapter(adapter);
