@@ -62,7 +62,7 @@ public class player_achiev_Fragment extends Fragment {
     public void cargarLista(Context context){
         for(int i = 0 ; i<12;i++){
             String msj = "Achievement"+String.valueOf(i);
-            ArrayItem.add(new Achievement(msj,msj));
+            ArrayItem.add(new Achievement(i,msj,msj));
         }
         adapter = new Achievement_adapter(ArrayItem, context);
         achievement.setAdapter(adapter);

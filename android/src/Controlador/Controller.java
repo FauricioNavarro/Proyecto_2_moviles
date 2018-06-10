@@ -2,6 +2,7 @@ package Controlador;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -21,14 +22,32 @@ public class Controller {
     }
     private String ref = "Myref";
     private JSONArray users;
+    private JSONArray achievements;
     private String token;
 
     private Controller() {
         try {
             users = new JSONArray(get_users());
+            //achievements = new JSONArray(get_achievs());
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void load_achievements(){
+        try {
+            achievements =  new JSONArray(get_achievs());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public JSONArray getAchievements() {
+        return achievements;
+    }
+
+    public void setAchievements(JSONArray achievements) {
+        this.achievements = achievements;
     }
 
     public String getToken() {
@@ -108,8 +127,29 @@ public class Controller {
             JSONObject jsonObject = new JSONObject(output_temp);
             String state = jsonObject.getString("status");
             if(state.equals("success")){
+                output = jsonObject.getJSONObject("data").toString();
+                Log.i("REQUEST->",output);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    //-------------- Achievements --------------
+
+    public String get_achievs(){
+        String output = null;
+        try {
+            String output_temp = new Dao_api().execute("achiev").get();
+            JSONObject jsonObject = new JSONObject(output_temp);
+            String state = jsonObject.getString("status");
+            if(state.equals("success")){
                 output = jsonObject.getJSONArray("data").toString();
-                System.out.printf("REQUEST->"+output);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

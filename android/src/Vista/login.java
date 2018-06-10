@@ -31,28 +31,29 @@ public class login extends AppCompatActivity {
     }
 
     public void logIn(View v){
-        String mail_aux = mail1.getText().toString();
-        String pass_aux = password1.getText().toString();
-        //String mail_aux = "admin@mail.com";
-        //String pass_aux = "a1234";
+        //String mail_aux = mail1.getText().toString();
+        //String pass_aux = password1.getText().toString();
+        String mail_aux = "admin@mail.com";
+        String pass_aux = "a1234";
         if(!mail_aux.equals("") && !pass_aux.equals("")){
             String res = Controller.getInstance().login(mail_aux,pass_aux);
             try {
                 JSONObject player = new JSONObject(res);
                 String state = player.getJSONObject("data").getString("type_id");
-                Toast.makeText(getApplicationContext(),state,Toast.LENGTH_LONG).show();
-                //SharedPreferences.Editor sharedPreferences =
-                //        getSharedPreferences("myref", Context.MODE_PRIVATE).edit();
+                //Toast.makeText(getApplicationContext(),state,Toast.LENGTH_LONG).show();
+                SharedPreferences.Editor sharedPreferences =
+                        getSharedPreferences("myref", Context.MODE_PRIVATE).edit();
                 String token = player.getString("token");
+                Toast.makeText(getApplicationContext(),"TOKEN->"+token,Toast.LENGTH_LONG).show();
                 if(state.equals("1")){
                     Intent intent = new Intent(getApplicationContext(),dashboard_admin.class);
-                    //    Controller.getInstance().setToken(token);
-                    //    sharedPreferences.putString("token",token);
+                        Controller.getInstance().setToken(token);
+                        sharedPreferences.putString("token",token);
                     startActivity(intent);
                 }else if(state.equals("2")){
                     Intent intent = new Intent(getApplicationContext(),playerActivity.class);
-                    //    Controller.getInstance().setToken(token);
-                    //    sharedPreferences.putString("token",token);
+                        Controller.getInstance().setToken(token);
+                        sharedPreferences.putString("token",token);
                     startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(),"Log in error",Toast.LENGTH_LONG).show();

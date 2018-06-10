@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -34,6 +35,7 @@ public class user_detail extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             String mail_aux = extras.getString("mail");
+            Log.i("PUT EXTRA->",mail_aux);
             String out = Controller.getInstance().get_single_user(mail_aux);
             Toast.makeText(this,out,Toast.LENGTH_LONG).show();
         }
