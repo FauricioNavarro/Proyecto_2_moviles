@@ -109,6 +109,7 @@ public class Controller {
             String state = jsonObject.getString("status");
             if(state.equals("success")){
                 output = jsonObject.getJSONArray("data").toString();
+                System.out.printf("REQUEST->"+output);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
