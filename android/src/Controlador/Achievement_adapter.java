@@ -14,22 +14,22 @@ import com.mygdx.game.R;
 
 import java.util.ArrayList;
 
-import Modelo.User;
+import Modelo.Achievement;
 
 /**
- * Created by fauricio on 29/05/18.
+ * Created by fauricio on 30/05/18.
  */
 
-public class User_adapter extends BaseAdapter implements Filterable {
-    private ArrayList<User> arrayItems;
+public class Achievement_adapter extends BaseAdapter implements Filterable {
+    private ArrayList<Achievement> arrayItems;
     private Context context;
     private LayoutInflater layoutInflater;
-    private ArrayList<User> listUsuarios = null;
+    private ArrayList<Achievement> listLogros = null;
 
-    public User_adapter(ArrayList<User> arrayItems, Context context) {
+    public Achievement_adapter(ArrayList<Achievement> arrayItems, Context context) {
         this.arrayItems = arrayItems;
-        this.listUsuarios = new ArrayList<>();
-        this.listUsuarios.addAll(arrayItems);
+        this.listLogros = new ArrayList<>();
+        this.listLogros.addAll(arrayItems);
         this.context = context;
     }
 
@@ -51,29 +51,31 @@ public class User_adapter extends BaseAdapter implements Filterable {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View vistaItem = layoutInflater.inflate(R.layout.user_item, parent, false);
+        View vistaItem = layoutInflater.inflate(R.layout.achievement_item, parent, false);
 
         ImageView imageView = vistaItem.findViewById(R.id.ls_imagen);
-        TextView nickname = vistaItem.findViewById(R.id.txt_nickname_user);
-        TextView email = vistaItem.findViewById(R.id.txt_email_user);
+        TextView nickname = vistaItem.findViewById(R.id.txt_name_achievement);
+        TextView email = vistaItem.findViewById(R.id.txt_description_achievement);
 
-        imageView.setImageResource(R.drawable.user_icon_1);
-        nickname.setText("Nickname: "+arrayItems.get(position).getNickname());
-        email.setText("Email: "+arrayItems.get(position).getEmail());
+        imageView.setImageResource(R.drawable.achievement_icon);
+        nickname.setText("Name: "+arrayItems.get(position).getName());
+        email.setText("Description: "+arrayItems.get(position).getDescription());
+
         return vistaItem;
     }
 
+    // Filter Class
     public void filter(String charText) {
         charText = charText.toLowerCase();
         arrayItems.clear();
         if (charText.length() == 0) {
-            arrayItems.addAll(listUsuarios);
+            arrayItems.addAll(listLogros);
         }
         else
         {
-            for (User wp : listUsuarios)
+            for (Achievement wp : listLogros)
             {
-                if (wp.getNickname().toLowerCase().contains(charText.toLowerCase()) || wp.getEmail().toLowerCase().contains(charText.toLowerCase()))
+                if (wp.getName().toLowerCase().contains(charText.toLowerCase()))
                 {
                     arrayItems.add(wp);
                 }

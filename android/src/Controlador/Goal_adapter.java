@@ -12,19 +12,19 @@ import com.mygdx.game.R;
 
 import java.util.ArrayList;
 
-import Modelo.Challenge;
-import Modelo.Reward;
+import Modelo.Goal;
+import Modelo.User;
 
 /**
- * Created by fauricio on 30/05/18.
+ * Created by fauricio on 08/06/18.
  */
 
-public class Reward_adapter extends BaseAdapter {
-    private ArrayList<Reward> arrayItems;
+public class Goal_adapter extends BaseAdapter {
+    private ArrayList<Goal> arrayItems;
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public Reward_adapter(ArrayList<Reward> arrayItems, Context context) {
+    public Goal_adapter(ArrayList<Goal> arrayItems, Context context) {
         this.arrayItems = arrayItems;
         this.context = context;
     }
@@ -47,17 +47,18 @@ public class Reward_adapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View vistaItem = layoutInflater.inflate(R.layout.reward_item, parent, false);
+        View vistaItem = layoutInflater.inflate(R.layout.goal_item, parent, false);
 
         ImageView imageView = vistaItem.findViewById(R.id.ls_imagen);
-        TextView nickname = vistaItem.findViewById(R.id.txt_nickname);
-        TextView email = vistaItem.findViewById(R.id.txt_email_2);
-        TextView type = vistaItem.findViewById(R.id.txt_type);
+        TextView name = vistaItem.findViewById(R.id.txt_name_goal);
+        TextView points = vistaItem.findViewById(R.id.txt_point_goal);
+        TextView type = vistaItem.findViewById(R.id.txt_type_goal);
 
-        imageView.setImageResource(R.drawable.user_icon);
-        nickname.setText("Name: "+arrayItems.get(position).getNombre());
-        email.setText("Description: "+arrayItems.get(position).getDescripcion());
-        type.setText("Type: "+arrayItems.get(position).getTipo());
+        imageView.setImageResource(R.drawable.goal_icon);
+        name.setText("Name: "+arrayItems.get(position).getName());
+        points.setText("Points: "+arrayItems.get(position).getPoints());
+        type.setText("Type: "+arrayItems.get(position).getType());
+
         return vistaItem;
     }
 }

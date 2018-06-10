@@ -1,13 +1,15 @@
-package com.mygdx.game;
+package Vista.Player;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class challenge_detail extends AppCompatActivity {
+import com.mygdx.game.R;
+
+public class goal_listply_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_challenge_detail);
+        setContentView(R.layout.activity_goal_listply_);
     }
 }

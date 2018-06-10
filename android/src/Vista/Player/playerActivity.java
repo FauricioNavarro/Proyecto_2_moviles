@@ -1,4 +1,4 @@
-package Vista.Admin;
+package Vista.Player;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,11 +7,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.mygdx.game.R;
 
-public class dashboard_admin extends AppCompatActivity {
+import Vista.Admin.achievementFragment;
+import Vista.Admin.challengeFragment;
+import Vista.Admin.user;
 
+public class playerActivity extends AppCompatActivity {
+
+    private TextView mTextMessage;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -21,14 +27,11 @@ public class dashboard_admin extends AppCompatActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {
-                case R.id.navigation_users:
-                    transaction.replace(R.id.fr_contenedor,new user()).commit();
+                case R.id.ply_navigation_challenges:
+                    transaction.replace(R.id.ply_fr_contenedor,new player_challenge_Fragment()).commit();
                     return true;
-                case R.id.navigation_challenges:
-                    transaction.replace(R.id.fr_contenedor,new challengeFragment()).commit();
-                    return true;
-                case R.id.navigation_achievements:
-                    transaction.replace(R.id.fr_contenedor,new achievementFragment()).commit();
+                case R.id.ply_navigation_achievements:
+                    transaction.replace(R.id.ply_fr_contenedor,new player_achiev_Fragment()).commit();
                     return true;
             }
             return false;
@@ -38,12 +41,12 @@ public class dashboard_admin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard_admin);
+        setContentView(R.layout.activity_player);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fr_contenedor,new user()).commit();
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        transaction.replace(R.id.ply_fr_contenedor,new player_challenge_Fragment()).commit();
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.ply_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 

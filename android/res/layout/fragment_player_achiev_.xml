@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Vista.Admin.user">
+    tools:context="Vista.Player.player_achiev_Fragment">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +22,7 @@
                 android:layout_weight="1"
                 android:drawableLeft="@android:drawable/ic_menu_search"
                 android:focusable="false"
-                android:hint="Buscar Usuario"
+                android:hint="Buscar Logro"
                 android:inputType="textPersonName" />
 
             <ImageButton
@@ -34,7 +35,7 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/LV_users"
+            android:id="@+id/ply_LV_achievement"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             ></ListView>

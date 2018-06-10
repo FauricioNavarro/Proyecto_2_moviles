@@ -1,4 +1,4 @@
-package Vista.Admin;
+package Vista.Player;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,19 +22,16 @@ import com.mygdx.game.R;
 
 import java.util.ArrayList;
 
-import Controlador.Challenge_adapter;
-import Controlador.User_adapter;
-import Modelo.Challenge;
-import Modelo.User;
+import Controlador.Achievement_adapter;
+import Modelo.Achievement;
+import Vista.Admin.add_achievement;
 import Vista.login;
 
-
-public class challengeFragment extends Fragment {
+public class player_achiev_Fragment extends Fragment {
     private View rootview;
-    private FloatingActionButton new_challenge;
-    private ListView challenges;
-    private Challenge_adapter adapter;
-    private ArrayList<Challenge> ArrayItem = null;
+    private ListView achievement;
+    private Achievement_adapter adapter;
+    private ArrayList<Achievement> ArrayItem = null;
     private EditText filterText;
     private ImageButton exit;
 
@@ -48,30 +45,16 @@ public class challengeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.fragment_challenge,container,false);
-        challenges = rootview.findViewById(R.id.LV_challenge);
-        new_challenge = rootview.findViewById(R.id.FB_add_challenge);
+        rootview = inflater.inflate(R.layout.fragment_player_achiev_,container,false);
+        achievement = rootview.findViewById(R.id.ply_LV_achievement);
         ArrayItem = new ArrayList<>();
 
-        new_challenge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(),add_challenge.class);
-                startActivity(intent);
-            }
-        });
-
-        challenges.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        achievement.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getContext(),goal_list.class);
-                startActivity(intent);
+
             }
         });
-
-
-
-
 
         exit = rootview.findViewById(R.id.imageButton);
 
@@ -86,7 +69,6 @@ public class challengeFragment extends Fragment {
                 startActivity(i);
             }
         });
-
 
         filterText = rootview.findViewById(R.id.filter);
         filterText.addTextChangedListener(new TextWatcher() {
@@ -119,6 +101,7 @@ public class challengeFragment extends Fragment {
             }
         });
 
+
         cargarLista(rootview.getContext());
         return rootview;
     }
@@ -135,10 +118,10 @@ public class challengeFragment extends Fragment {
 
     public void cargarLista(Context context){
         for(int i = 0 ; i<12;i++){
-            String msj = "Challenge"+String.valueOf(i);
-            ArrayItem.add(new Challenge(msj,msj));
+            String msj = "Achievement"+String.valueOf(i);
+            ArrayItem.add(new Achievement(msj,msj));
         }
-        adapter = new Challenge_adapter(ArrayItem, context);
-        challenges.setAdapter(adapter);
+        adapter = new Achievement_adapter(ArrayItem, context);
+        achievement.setAdapter(adapter);
     }
 }
