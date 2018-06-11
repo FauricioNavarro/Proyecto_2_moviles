@@ -30,6 +30,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.mygdx.game.AndroidLauncher;
 import com.mygdx.game.R;
 
@@ -45,6 +46,8 @@ public class login extends AppCompatActivity {
     private final static int RC_SIGN_IN = 2;
     GoogleApiClient mGoogleApiClient;
     FirebaseAuth.AuthStateListener mAuthListener;
+    final static String projextToken = "7a672431d5118e82bf9f7478530f06b5";
+    MixpanelAPI mixpanel;
 
     @Override
     protected void onStart() {
@@ -56,6 +59,8 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mixpanel = MixpanelAPI.getInstance(this,projextToken);
+
         mail1 = findViewById(R.id.txt_email_login);
         password1 = findViewById(R.id.txt_password_login);
 
@@ -65,7 +70,27 @@ public class login extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null){
-                    startActivity(new Intent(login.this,dashboard_admin.class));
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    String Password = "sn6wcNDFTNhHEkhMpo0D"+user.getEmail();
+                    String res = Controller.getInstance().login(user.getEmail(),Password);
+                    JSONObject player = null;
+                    try {
+                        player = new JSONObject(res);
+                        String state = player.getJSONObject("data").getString("type_id");
+
+                        SharedPreferences.Editor sharedPreferences =
+                                getSharedPreferences("myref", Context.MODE_PRIVATE).edit();
+                        String token = player.getString("token");
+                        Intent intent = new Intent(getApplicationContext(),playerActivity.class);
+                        Controller.getInstance().setToken(token);
+                        sharedPreferences.putString("token",token);
+                        sharedPreferences.putString("mail",user.getEmail());
+                        sharedPreferences.commit();
+                        startActivity(intent);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             }
         };
@@ -98,10 +123,10 @@ public class login extends AppCompatActivity {
     public void logIn(View v){
         //String mail_aux = mail1.getText().toString();
         //String pass_aux = password1.getText().toString();
-        //String mail_aux = "admin@mail.com";
-        //String pass_aux = "admin";
-        String mail_aux = "mario@mail.com";
-        String pass_aux = "m1234";
+        String mail_aux = "admin@mail.com";
+        String pass_aux = "admin";
+        //String mail_aux = "mario@mail.com";
+        //String pass_aux = "m1234";
         if(!mail_aux.equals("") && !pass_aux.equals("")){
             String res = Controller.getInstance().login(mail_aux,pass_aux);
             try {
@@ -118,6 +143,7 @@ public class login extends AppCompatActivity {
                         Controller.getInstance().setToken(token);
                         sharedPreferences.putString("token",token);
                         sharedPreferences.commit();
+                    mixpanel.optOutTracking();
                     startActivity(intent);
                 }else if(state.equals("2")){
                     Intent intent = new Intent(getApplicationContext(),playerActivity.class);
@@ -125,6 +151,7 @@ public class login extends AppCompatActivity {
                         sharedPreferences.putString("token",token);
                         sharedPreferences.putString("mail",mail_aux);
                     sharedPreferences.commit();
+                    mixpanel.optOutTracking();
                     startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(),"Log in error",Toast.LENGTH_LONG).show();
@@ -226,6 +253,12 @@ public class login extends AppCompatActivity {
                         // ...
                     }
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        mixpanel.flush();
+        super.onDestroy();
     }
 }
 

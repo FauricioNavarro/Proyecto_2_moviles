@@ -55,6 +55,8 @@ android {
         compile 'com.google.firebase:firebase-auth:15.0.0'
         compile 'com.google.android.gms:play-services-auth:15.0.0'
         compile 'com.google.android.gms:play-services-location:15.0.1'
+        compile"com.mixpanel.android:mixpanel-android:5.+"
+        compile"com.google.android.gms:play-services-gcm:15.0.1"
         implementation 'com.android.support:support-v4:27.1.1'
     }
     /*
