@@ -66,8 +66,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch.draw(screen,0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		batch.draw(img,plano_x,plano_y,width,height);
 		rectangle = new Rectangle();
-		shapeRenderer.setColor(Color.BLUE);
-		shapeRenderer.rect(plano_x,plano_y,width,height);
+		//shapeRenderer.setColor(Color.BLUE);
+		//shapeRenderer.rect(plano_x,plano_y,width,height);
 
 		if(!(plano_y < -190)){
 			plano_x=plano_x -3;

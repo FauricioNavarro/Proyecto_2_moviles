@@ -50,6 +50,7 @@ public class playerActivity extends AppCompatActivity {
         String mail = sharedPreferences.getString("mail","");
         Log.i("User mail->",mail);
         Controller.getInstance().load_challenges();
+        Controller.getInstance().load_achievements();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.ply_fr_contenedor,new player_challenge_Fragment()).commit();

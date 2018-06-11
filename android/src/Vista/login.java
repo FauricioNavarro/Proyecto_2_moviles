@@ -186,7 +186,33 @@ public class login extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             //Se puede obtener el correo para saber si es o no admin y redirigir la app.
                             //Password "sn6wcNDFTNhHEkhMpo0D"+user.getEmail()
+                            String Password = "sn6wcNDFTNhHEkhMpo0D"+user.getEmail();
                             Log.d("TAG", user.getEmail() + user.getDisplayName());
+
+                            String out = Controller.getInstance().signin(user.getEmail(),user.getEmail(),Password);
+
+                            String res = Controller.getInstance().login(user.getEmail(),Password);
+                            JSONObject player = null;
+                            try {
+                                player = new JSONObject(res);
+                                String state = player.getJSONObject("data").getString("type_id");
+
+                                SharedPreferences.Editor sharedPreferences =
+                                        getSharedPreferences("myref", Context.MODE_PRIVATE).edit();
+                                String token = player.getString("token");
+                                Intent intent = new Intent(getApplicationContext(),playerActivity.class);
+                                Controller.getInstance().setToken(token);
+                                sharedPreferences.putString("token",token);
+                                sharedPreferences.putString("mail",user.getEmail());
+                                sharedPreferences.commit();
+                                startActivity(intent);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+
+
                             //startActivity(new Intent(login.this,dashboard_admin.class));
                             //updateUI(user);
                         } else {
