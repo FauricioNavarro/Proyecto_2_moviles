@@ -51,6 +51,14 @@ public class Controller {
         }
     }
 
+    public void load_user_challenges(String mail){
+        try {
+            challenges =  new JSONArray(get_user_challengesGoalsUsers(mail));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void load_user(){
         try {
             users = new JSONArray(get_users());
@@ -227,6 +235,57 @@ public class Controller {
         return output;
     }
 
+    public String add_achiev(String name,String description){
+        String output = null;
+        try {
+            output = new Dao_api().execute("add_achiev",name,description).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    public String put_achiev(String id,String name,String description){
+        String out = null;
+        try {
+            out = new Dao_api().execute("put_achiev",id,name,description).get();
+            /*
+            String output_temp = new Dao_api().execute("put_user",mail_temp,pass_temp,name_temp,challenges_completed,points_temp,zombies_killed,run,type).get();
+            JSONObject jsonObject = new JSONObject(output_temp);
+            String state = jsonObject.getString("status");
+            if(state.equals("success")){
+                out = jsonObject.getJSONObject("data").toString();
+                Log.i("REQUEST->",out);
+            }*/
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return out;
+    }
+
+    public String delete_achiev(String id) {
+        String output = null;
+        try {
+            output = new Dao_api().execute("delete_achiev", id).get();
+            /*
+            String output_temp = new Dao_api().execute("delete_user").get();
+            JSONObject jsonObject = new JSONObject(output_temp);
+            String state = jsonObject.getString("status");
+            if(state.equals("success")){
+                output = jsonObject.getJSONArray("data").toString();
+            }*/
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
     //-------------- Challenges --------------
 
     public String get_challenges(){
@@ -252,11 +311,110 @@ public class Controller {
                                 String latitud_final,String longitud_final,String zombies_probability){
         String output = null;
         try {
-            new Dao_api().execute("add_challenge",name,description,latitud_inicial,longitud_inicial,
+            output = new Dao_api().execute("add_challenge",name,description,latitud_inicial,longitud_inicial,
                     latitud_final,longitud_final,zombies_probability).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    public String get_single_challenge(String mail){
+        String output = null;
+        try {
+            String output_temp = new Dao_api().execute("single_challenge",mail).get();
+            JSONObject jsonObject = new JSONObject(output_temp);
+            String state = jsonObject.getString("status");
+            if(state.equals("success")){
+                output = jsonObject.getJSONObject("data").toString();
+                Log.i("REQUEST->",output);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    public String get_challengesGoalsUsers(){
+        String output = null;
+        try {
+            String output_temp = new Dao_api().execute("challengesGoalsUsers").get();
+            JSONObject jsonObject = new JSONObject(output_temp);
+            String state = jsonObject.getString("status");
+            if(state.equals("success")){
+                output = jsonObject.getJSONArray("data").toString();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    public String get_user_challengesGoalsUsers(String mail){
+        String output = null;
+        try {
+            String output_temp = new Dao_api().execute("user_challengesGoalsUsers",mail).get();
+            JSONObject jsonObject = new JSONObject(output_temp);
+            String state = jsonObject.getString("status");
+            if(state.equals("success")){
+                output = jsonObject.getJSONArray("data").toString();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    public String goals_challenge(String id){
+        String output = null;
+        try {
+            //output = new Dao_api().execute("goals_x_challenge",id).get();
+            String output_temp = new Dao_api().execute("goals_x_challenge",id).get();
+
+            JSONObject jsonObject = new JSONObject(output_temp);
+            String state = jsonObject.getString("status");
+            if(state.equals("success")){
+                output = jsonObject.getJSONArray("data").toString();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    public String get_single_goal(String id){
+        String output = null;
+        try {
+            String output_temp = new Dao_api().execute("single_goal",id).get();
+            JSONObject jsonObject = new JSONObject(output_temp);
+            String state = jsonObject.getString("status");
+            if(state.equals("success")){
+                output = jsonObject.getJSONObject("data").toString();
+                Log.i("REQUEST->",output);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return output;

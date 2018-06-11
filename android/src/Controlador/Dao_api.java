@@ -88,8 +88,46 @@ public class Dao_api extends AsyncTask<String,Void,String> {
             case "challenges":{
                 output = getRequest(url+"challenges/",Controller.getInstance().getToken());
             }break;
+            case "single_challenge":{
+                output = getRequest(url+"challenges/"+strings[1],Controller.getInstance().getToken());
+            }break;
             case "achiev":{
                 output = getRequest(url+"achievements/",Controller.getInstance().getToken());
+            }break;
+            case "add_achiev":{
+                JSONObject achiev = new JSONObject();
+                try {
+                    achiev.put("name", strings[1]);
+                    achiev.put("description", strings[2]);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                output = postRequest(url+"achievs/",String.valueOf(achiev),Controller.getInstance().getToken());
+            }break;
+            case "put_achiev":{
+                JSONObject achiev = new JSONObject();
+                try {
+                    achiev.put("name", strings[2]);
+                    achiev.put("description", strings[3]);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                output = putRequest(url+"achievs/"+strings[1],Controller.getInstance().getToken(),String.valueOf(achiev));
+            }break;
+            case "delete_achiev":{
+                output = deleteRequest(url+"achievs/"+strings[1],Controller.getInstance().getToken());
+            }break;
+            case "challengesGoalsUsers":{
+                output = getRequest(url+"challengesGoalsUsers/",Controller.getInstance().getToken());
+            }break;
+            case "user_challengesGoalsUsers":{
+                output = getRequest(url+"challengesGoalsUsers/"+strings[1],Controller.getInstance().getToken());
+            }break;
+            case "goals_x_challenge":{
+                output = getRequest(url+"goals_x_challenge/"+strings[1],Controller.getInstance().getToken());
+            }break;
+            case "single_goal":{
+                output = getRequest(url+"goals/"+strings[1],Controller.getInstance().getToken());
             }break;
         }
         return output;
