@@ -40,7 +40,7 @@ public class achievementFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootview = inflater.inflate(R.layout.fragment_achievement,container,false);
         achievement = rootview.findViewById(R.id.LV_achievement);
@@ -58,7 +58,11 @@ public class achievementFragment extends Fragment {
         achievement.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                Achievement achievement = ArrayItem.get(i);
+                Intent intent = new Intent(rootview.getContext(),achievement_detail.class);
+                Log.i("id achiev->",String.valueOf(achievement.getId()));
+                intent.putExtra("achiev_admin",achievement.getId());
+                startActivity(intent);
             }
         });
         cargarLista(rootview.getContext());

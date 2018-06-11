@@ -24,38 +24,34 @@
 
         <EditText
             style="@style/txt_style"
-            android:id="@+id/txt_name_goal"
+            android:id="@+id/txt_name_goal_dt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="@string/email" />
 
         <EditText
             style="@style/txt_style_2"
-            android:id="@+id/txt_latitud_goal"
+            android:id="@+id/txt_latitud_goal_dt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="5dp"
-            android:hint="@string/password" />
+            android:hint="Latitude" />
 
         <EditText
             style="@style/txt_style_2"
-            android:id="@+id/txt_longitude_goal"
+            android:id="@+id/txt_longitude_goal_dt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="5dp"
-            android:hint="@string/password" />
+            android:hint="Longitude" />
 
         <EditText
             style="@style/txt_style_2"
-            android:id="@+id/txt_points_goal"
+            android:id="@+id/txt_points_goal_dt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="30dp"
-            android:hint="@string/password" />
+            android:hint="Points" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:onClick="add_goal"/>
     </LinearLayout>
 </LinearLayout>

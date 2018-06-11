@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,10 @@ public class challengeFragment extends Fragment {
         challenges.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Challenge challenge = ArrayItem.get(i);
                 Intent intent = new Intent(getContext(),goal_list.class);
+                Log.i("Challenges id->",String.valueOf(challenge.getId()));
+                intent.putExtra("id_challenge",String.valueOf(challenge.getId()));
                 startActivity(intent);
             }
         });
