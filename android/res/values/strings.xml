@@ -7,11 +7,14 @@
     <string name="nickname">Nickname</string>
     <string name="name">Name</string>
     <string name="type">Type</string>
-    <string name="longitude">Longitude</string>
-    <string name="latitude">Latitude</string>
+    <string name="longitude">Initial Longitude</string>
+    <string name="latitude">Initial Latitude</string>
+    <string name="longitude_fin">Final Longitude</string>
+    <string name="latitude_fin">Final Latitude</string>
     <string name="description">Description</string>
     <string name="user_det">User details</string>
     <string name="goal_det">Goal details</string>
+    <string name="zombies_probability">Zombies probability</string>
     <string name="achie_det">Achievement details</string>
     <string name="chag_det">Challenge details</string>
     <string name="signin">Not account yet? Create one</string>
