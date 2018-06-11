@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,16 +18,13 @@ import Modelo.Achievement;
  * Created by fauricio on 30/05/18.
  */
 
-public class Achievement_adapter extends BaseAdapter implements Filterable {
+public class Achievement_adapter extends BaseAdapter {
     private ArrayList<Achievement> arrayItems;
     private Context context;
     private LayoutInflater layoutInflater;
-    private ArrayList<Achievement> listLogros = null;
 
     public Achievement_adapter(ArrayList<Achievement> arrayItems, Context context) {
         this.arrayItems = arrayItems;
-        this.listLogros = new ArrayList<>();
-        this.listLogros.addAll(arrayItems);
         this.context = context;
     }
 
@@ -62,30 +57,5 @@ public class Achievement_adapter extends BaseAdapter implements Filterable {
         email.setText("Description: "+arrayItems.get(position).getDescription());
 
         return vistaItem;
-    }
-
-    // Filter Class
-    public void filter(String charText) {
-        charText = charText.toLowerCase();
-        arrayItems.clear();
-        if (charText.length() == 0) {
-            arrayItems.addAll(listLogros);
-        }
-        else
-        {
-            for (Achievement wp : listLogros)
-            {
-                if (wp.getName().toLowerCase().contains(charText.toLowerCase()))
-                {
-                    arrayItems.add(wp);
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
-
-    @Override
-    public Filter getFilter() {
-        return null;
     }
 }

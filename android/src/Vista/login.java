@@ -8,8 +8,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import Controlador.Controller;
 import Vista.Player.playerActivity;
@@ -31,21 +31,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.mygdx.game.AndroidLauncher;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.mygdx.game.R;
 
 import org.json.JSONException;
@@ -60,7 +45,6 @@ public class login extends AppCompatActivity {
     private final static int RC_SIGN_IN = 2;
     GoogleApiClient mGoogleApiClient;
     FirebaseAuth.AuthStateListener mAuthListener;
-
 
     @Override
     protected void onStart() {
@@ -119,21 +103,26 @@ public class login extends AppCompatActivity {
         if(!mail_aux.equals("") && !pass_aux.equals("")){
             String res = Controller.getInstance().login(mail_aux,pass_aux);
             try {
+                //Toast.makeText(getApplicationContext(),res,Toast.LENGTH_LONG).show();
                 JSONObject player = new JSONObject(res);
                 String state = player.getJSONObject("data").getString("type_id");
-                Toast.makeText(getApplicationContext(),state,Toast.LENGTH_LONG).show();
-                //SharedPreferences.Editor sharedPreferences =
-                //        getSharedPreferences("myref", Context.MODE_PRIVATE).edit();
+
+                SharedPreferences.Editor sharedPreferences =
+                        getSharedPreferences("myref", Context.MODE_PRIVATE).edit();
                 String token = player.getString("token");
+                //Toast.makeText(getApplicationContext(),"TOKEN->"+token,Toast.LENGTH_LONG).show();
                 if(state.equals("1")){
                     Intent intent = new Intent(getApplicationContext(),dashboard_admin.class);
-                    //    Controller.getInstance().setToken(token);
-                    //    sharedPreferences.putString("token",token);
+                        Controller.getInstance().setToken(token);
+                        sharedPreferences.putString("token",token);
+                        sharedPreferences.commit();
                     startActivity(intent);
                 }else if(state.equals("2")){
                     Intent intent = new Intent(getApplicationContext(),playerActivity.class);
-                    //    Controller.getInstance().setToken(token);
-                    //    sharedPreferences.putString("token",token);
+                        Controller.getInstance().setToken(token);
+                        sharedPreferences.putString("token",token);
+                        sharedPreferences.putString("mail",mail_aux);
+                    sharedPreferences.commit();
                     startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(),"Log in error",Toast.LENGTH_LONG).show();

@@ -55,7 +55,7 @@ public class goal_list extends AppCompatActivity {
     public void cargarLista(Context context){
         for(int i = 0 ; i<12;i++){
             String msj = "Goal"+String.valueOf(i);
-            ArrayItem.add(new Goal(msj,msj,msj));
+            ArrayItem.add(new Goal(i,msj,msj,msj));
         }
         adapter = new Goal_adapter(ArrayItem, context);
         goals.setAdapter(adapter);
