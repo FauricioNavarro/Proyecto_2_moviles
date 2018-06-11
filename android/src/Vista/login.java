@@ -143,7 +143,7 @@ public class login extends AppCompatActivity {
                         Controller.getInstance().setToken(token);
                         sharedPreferences.putString("token",token);
                         sharedPreferences.commit();
-                    mixpanel.optOutTracking();
+                    mixpanel.track("User " + mail_aux + " Logged");
                     startActivity(intent);
                 }else if(state.equals("2")){
                     Intent intent = new Intent(getApplicationContext(),playerActivity.class);
@@ -151,7 +151,7 @@ public class login extends AppCompatActivity {
                         sharedPreferences.putString("token",token);
                         sharedPreferences.putString("mail",mail_aux);
                     sharedPreferences.commit();
-                    mixpanel.optOutTracking();
+                    mixpanel.track("User " + mail_aux + " Logged");
                     startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(),"Log in error",Toast.LENGTH_LONG).show();
@@ -232,6 +232,7 @@ public class login extends AppCompatActivity {
                                 sharedPreferences.putString("token",token);
                                 sharedPreferences.putString("mail",user.getEmail());
                                 sharedPreferences.commit();
+                                mixpanel.track("User " + user.getEmail() + " Logged with Google");
                                 startActivity(intent);
                             } catch (JSONException e) {
                                 e.printStackTrace();

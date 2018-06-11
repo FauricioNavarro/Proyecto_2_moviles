@@ -14,10 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.mygdx.game.R;
 
 import org.json.JSONArray;
@@ -41,6 +43,8 @@ public class achievementFragment extends Fragment {
     private ArrayList<Achievement> ArrayItem = null;
     private EditText filterText;
     private ImageButton exit;
+    final static String projextToken = "7a672431d5118e82bf9f7478530f06b5";
+    MixpanelAPI mixpanel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,7 @@ public class achievementFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootview = inflater.inflate(R.layout.fragment_achievement,container,false);
         achievement = rootview.findViewById(R.id.LV_achievement);
+        mixpanel = MixpanelAPI.getInstance(getContext(),projextToken);
         new_achievement = rootview.findViewById(R.id.FB_add_achivement);
         ArrayItem = new ArrayList<>();
         Log.i("REQUEST->",Controller.getInstance().get_achievs());
@@ -81,7 +86,12 @@ public class achievementFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (FirebaseAuth.getInstance().getCurrentUser() != null){
+                    mixpanel.track("Logout Google Acc");
                     FirebaseAuth.getInstance().signOut();
+
+                }
+                else{
+                    mixpanel.track("Logout Common Acc");
                 }
                 Intent i = new Intent(getContext(), login.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
