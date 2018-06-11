@@ -11,49 +11,28 @@
     <EditText
         style="@style/txt_style"
         android:id="@+id/ch_name"
-        android:hint="@string/name"
+        android:text="@string/name"
         android:layout_width="match_parent"
         android:layout_height="40dp" />
 
     <EditText
         style="@style/txt_style"
         android:id="@+id/ch_des"
-        android:hint="@string/description"
+        android:text="@string/description"
         android:layout_width="match_parent"
         android:layout_height="40dp" />
 
     <EditText
         style="@style/txt_style"
-        android:id="@+id/ch_lat_inicial"
-        android:hint="@string/latitude"
+        android:id="@+id/ch_lat"
+        android:text="@string/latitude"
         android:layout_width="match_parent"
         android:layout_height="40dp" />
 
     <EditText
         style="@style/txt_style"
-        android:id="@+id/ch_lon_inicial"
-        android:hint= "@string/longitude"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"/>
-
-    <EditText
-        style="@style/txt_style"
-        android:id="@+id/ch_lat_fin"
-        android:hint="@string/latitude_fin"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
-
-    <EditText
-        style="@style/txt_style"
-        android:id="@+id/ch_lon_fin"
-        android:hint="@string/longitude_fin"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
-
-    <EditText
-        style="@style/txt_style"
-        android:id="@+id/ch_zombie_pro"
-        android:hint="@string/zombies_probability"
+        android:id="@+id/ch_lon"
+        android:text="@string/longitude"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="25dp"/>

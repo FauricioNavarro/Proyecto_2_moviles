@@ -11,16 +11,38 @@
     <EditText
         style="@style/txt_style"
         android:id="@+id/rw_name"
-        android:hint="@string/name"
+        android:text="@string/name"
         android:layout_width="match_parent"
         android:layout_height="40dp" />
 
     <EditText
         style="@style/txt_style"
         android:id="@+id/rw_des"
-        android:hint="@string/description"
+        android:text="@string/description"
         android:layout_width="match_parent"
         android:layout_height="40dp" />
+
+    <EditText
+        style="@style/txt_style"
+        android:id="@+id/rw_type"
+        android:text="@string/type"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <EditText
+        style="@style/txt_style"
+        android:id="@+id/rw_lat"
+        android:text="@string/latitude"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <EditText
+        style="@style/txt_style"
+        android:id="@+id/rw_lon"
+        android:text="@string/longitude"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="25dp"/>
 
     <Button
         style="@style/txt_style"
