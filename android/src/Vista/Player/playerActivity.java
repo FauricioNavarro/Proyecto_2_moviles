@@ -49,7 +49,7 @@ public class playerActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("myref", Context.MODE_PRIVATE);
         String mail = sharedPreferences.getString("mail","");
         Log.i("User mail->",mail);
-        Controller.getInstance().load_user_challenges(mail);
+        Controller.getInstance().load_challenges();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.ply_fr_contenedor,new player_challenge_Fragment()).commit();

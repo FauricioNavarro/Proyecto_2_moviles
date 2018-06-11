@@ -129,6 +129,25 @@ public class Dao_api extends AsyncTask<String,Void,String> {
             case "single_goal":{
                 output = getRequest(url+"goals/"+strings[1],Controller.getInstance().getToken());
             }break;
+            case "achievementsUsers":{
+                output = getRequest(url+"achievementsUsers/"+strings[1],Controller.getInstance().getToken());
+            }break;
+            case "get_configurations":{
+                output = getRequest(url+"achievementsUsers/"+strings[1],Controller.getInstance().getToken());
+            }break;
+            case "post_configurations":{
+                JSONObject config = new JSONObject();
+                try {
+                    config.put("name", strings[2]);
+                    config.put("description", strings[3]);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                //output = postRequest(config,String.valueOf(config),Controller.getInstance().getToken());
+            }break;
+            case "put_configurations":{
+                output = getRequest(url+"achievementsUsers/"+strings[1],Controller.getInstance().getToken());
+            }break;
         }
         return output;
     }

@@ -82,6 +82,7 @@ public class goal_listply_Activity extends AppCompatActivity {
                     String chall_id = object.getString("challenge_id");
                     String lat = object.getString("latitud");
                     String lon = object.getString("longitud");
+                    Log.i("Info->",name+","+points+","+type_id+","+chall_id+","+lat+","+lon);
                     ArrayItem.add(new Goal(id,name,points,type_id,lat,lon,chall_id));
                 } catch (JSONException e) {
                     e.printStackTrace();

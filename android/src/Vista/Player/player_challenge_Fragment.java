@@ -129,18 +129,13 @@ public class player_challenge_Fragment extends Fragment {
 
     public void cargarLista(Context context){
         JSONArray array = Controller.getInstance().getChallenges();
-        //Log.i("ChallengesXuser",array.toString());
         for(int i = 0;i<array.length();i++){
             try {
                 JSONObject object = (JSONObject) array.getJSONObject(i);
-                int id = object.getInt("challenge_id");
-                String challenge = Controller.getInstance().get_single_challenge(String.valueOf(id));
-                //Log.i("ChallengesXuser->",challenge);
-                JSONObject jsonObject = new JSONObject(challenge);
-                int id_aux = jsonObject.getInt("id");
-                String name = jsonObject.getString("name");
-                String des = jsonObject.getString("description");
-                ArrayItem.add(new Challenge(id_aux,name,des));
+                int id = object.getInt("id");
+                String name = object.getString("name");
+                String des = object.getString("description");
+                ArrayItem.add(new Challenge(id,name,des));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
