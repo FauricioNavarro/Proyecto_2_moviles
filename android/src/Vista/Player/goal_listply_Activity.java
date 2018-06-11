@@ -1,8 +1,12 @@
 package Vista.Player;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +34,9 @@ public class goal_listply_Activity extends AppCompatActivity {
     private Goal_adapter adapter;
     private ArrayList<Goal> ArrayItem = null;
     private String id;
+    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +66,7 @@ public class goal_listply_Activity extends AppCompatActivity {
                 String lat = goal_actual.getLatitude();
                 String lon = goal_actual.getLongitude();
                 Log.i("GOAL X ->",name+","+points+","+type_id+","+chall_id+","+lat+","+lon);
-                //Intent intent= new Intent(getApplicationContext(),goal_detail.class);
-                //startActivity(intent);
+                getLocationPermission(lat,lon,name);
             }
         });
 
@@ -93,5 +99,31 @@ public class goal_listply_Activity extends AppCompatActivity {
         }
         adapter = new Goal_adapter(ArrayItem, context);
         goals.setAdapter(adapter);
+    }
+
+    private void getLocationPermission(String lat, String lon, String name){
+        Log.d("TAG", "getLocationPermission: getting location permissions");
+        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION};
+
+        if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                    COURSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                Intent intent= new Intent(getApplicationContext(),MapsActivity.class);
+                intent.putExtra("lat",lat);
+                intent.putExtra("lon",lon);
+                intent.putExtra("nombre",name);
+                startActivity(intent);
+            }else{
+                ActivityCompat.requestPermissions(this,
+                        permissions,
+                        LOCATION_PERMISSION_REQUEST_CODE);
+            }
+        }else{
+            ActivityCompat.requestPermissions(this,
+                    permissions,
+                    LOCATION_PERMISSION_REQUEST_CODE);
+        }
     }
 }

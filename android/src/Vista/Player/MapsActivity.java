@@ -1,19 +1,39 @@
 package Vista.Player;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.location.Location;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
+
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.mygdx.game.AndroidLauncher;
+import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private float lat, lon;
+    private String nm;
+    private static final int radio = 20;
+    private LatLng sydney;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +43,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        Bundle b = getIntent().getExtras();
+        lat = Float.valueOf(b.getString("lat"));
+        lon = Float.valueOf(b.getString("lon"));
+        nm = b.getString("nombre");
     }
 
 
@@ -37,11 +61,51 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        float[] results = new float[1];
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        sydney = new LatLng(lat, lon);
+        mMap.addMarker(new MarkerOptions().position(sydney).title(nm));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(15.5f));
+        CircleOptions Cotp = new CircleOptions()
+                .center(sydney)
+                .radius(radio)
+                .strokeColor(Color.RED)
+                .clickable(true);
+        Circle circle = mMap.addCircle(Cotp);
+        //Verifica que clickeo el circulo dentro del rango que se puede acceder al reto
+        mMap.setOnCircleClickListener(new GoogleMap.OnCircleClickListener() {
+            @Override
+            public void onCircleClick(Circle circle) {
+                float[] results = new float[1];
+                Location.distanceBetween(mMap.getMyLocation().getLatitude(),mMap.getMyLocation().getLongitude(),sydney.latitude,sydney.longitude,results);
+                if (results[0]<= radio){
+                    Intent  intent = new Intent(getApplicationContext(),AndroidLauncher.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"No se encuentra dentro del radio para iniciar el reto",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
+
+
     }
+
+
+
+
 }

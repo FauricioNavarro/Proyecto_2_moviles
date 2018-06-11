@@ -183,8 +183,9 @@ public class login extends AppCompatActivity {
                             Log.d("TAG", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //Se puede obtener el correo para saber si es o no admin y redirigir la app.
-                            //Log.d("TAG", user.getEmail() + user.getDisplayName());
-                            startActivity(new Intent(login.this,dashboard_admin.class));
+                            //Password "sn6wcNDFTNhHEkhMpo0D"+user.getEmail()
+                            Log.d("TAG", user.getEmail() + user.getDisplayName());
+                            //startActivity(new Intent(login.this,dashboard_admin.class));
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
