@@ -13,6 +13,23 @@ import android.widget.EditText;
 
 import Controlador.Controller;
 import Vista.Player.playerActivity;
+
+import com.badlogic.gdx.utils.Timer;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.mygdx.game.AndroidLauncher;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -38,6 +55,11 @@ import Vista.Admin.dashboard_admin;
 
 public class login extends AppCompatActivity {
     private EditText mail1,password1;
+    SignInButton button;
+    FirebaseAuth mAuth;
+    private final static int RC_SIGN_IN = 2;
+    GoogleApiClient mGoogleApiClient;
+    FirebaseAuth.AuthStateListener mAuthListener;
 
 
     SignInButton button;
@@ -58,6 +80,7 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         mail1 = findViewById(R.id.txt_email_login);
         password1 = findViewById(R.id.txt_password_login);
+
         mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -88,10 +111,9 @@ public class login extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn();
+                signInG();
             }
         });
-
 
     }
 
@@ -146,7 +168,7 @@ public class login extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void signIn() {
+    private void signInG() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }

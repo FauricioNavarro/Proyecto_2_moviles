@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "413926539383-pcfv600sace4temtfdih9om0qb52tkg5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mygdx.game",
+            "certificate_hash": "ea493ffb015d9a026d4e7e285c493b519b095239"
+          }
+        },
+        {
           "client_id": "413926539383-7ervn64c5tl20sgo9tvmgq2adu57cqng.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
