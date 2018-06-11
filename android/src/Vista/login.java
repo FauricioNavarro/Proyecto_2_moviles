@@ -98,8 +98,10 @@ public class login extends AppCompatActivity {
     public void logIn(View v){
         //String mail_aux = mail1.getText().toString();
         //String pass_aux = password1.getText().toString();
-        String mail_aux = "admin@mail.com";
-        String pass_aux = "admin";
+        //String mail_aux = "admin@mail.com";
+        //String pass_aux = "admin";
+        String mail_aux = "mario@mail.com";
+        String pass_aux = "m1234";
         if(!mail_aux.equals("") && !pass_aux.equals("")){
             String res = Controller.getInstance().login(mail_aux,pass_aux);
             try {

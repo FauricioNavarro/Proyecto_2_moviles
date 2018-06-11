@@ -96,9 +96,15 @@
          sign the APK for publishing.
          You can define the keys for the debug and release targets in src/debug/ and src/release/.
     -->
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+
         <activity
             android:name="Vista.Player.MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps"
         android:screenOrientation="portrait" />
         <activity
             android:name="Vista.Admin.goal_list"
@@ -130,6 +136,7 @@
         android:theme="@style/Theme.AppCompat">
     </activity>
     <activity android:name="Vista.Player.goal_listply_Activity"
+        android:theme="@style/Theme.AppCompat"
         android:parentActivityName="Vista.Player.playerActivity">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
