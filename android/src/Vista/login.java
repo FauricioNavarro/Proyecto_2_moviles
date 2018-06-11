@@ -36,7 +36,8 @@ import com.mygdx.game.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import Vista.Admin.dashboard_admin;
 
 public class login extends AppCompatActivity {
@@ -60,7 +61,7 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mixpanel = MixpanelAPI.getInstance(this,projextToken);
-
+        Fabric.with(this, new Crashlytics());
         mail1 = findViewById(R.id.txt_email_login);
         password1 = findViewById(R.id.txt_password_login);
 

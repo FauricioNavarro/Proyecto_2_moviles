@@ -36,7 +36,7 @@ android {
         maven {
             url 'https://raw.github.com/zeeshanejaz/unirest-android/mvn-repo'
         }
-        //maven { url 'https://maven.fabric.io/public' }
+        maven { url 'https://maven.fabric.io/public' }
     }
     //apply plugin: 'io.fabric'
     dependencies {
@@ -58,6 +58,9 @@ android {
         compile"com.mixpanel.android:mixpanel-android:5.+"
         compile"com.google.android.gms:play-services-gcm:15.0.1"
         implementation 'com.android.support:support-v4:27.1.1'
+        compile('com.crashlytics.sdk.android:crashlytics:2.9.3@aar') {
+            transitive = true;
+        }
     }
     /*
     crashlytics {
@@ -67,6 +70,8 @@ android {
     }*/
 }
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
+
 // called every time gradle gets executed, takes the native dependencies of
 // the natives configuration, and extracts them to the proper libs/ folders
 // so they get packed with the APK.

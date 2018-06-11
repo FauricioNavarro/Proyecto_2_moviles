@@ -143,6 +143,10 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value="Vista.Player.playerActivity"/>
     </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="4ea617d28dafcf3b59aee9d0b4fa2a1fc3556425"
+            />
     </application>
 
 </manifest>
