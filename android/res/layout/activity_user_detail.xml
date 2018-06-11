@@ -28,7 +28,7 @@
             android:id="@+id/txt_email_dt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:hint="@string/email" />
+            android:text="@string/email" />
 
         <EditText
             style="@style/txt_style_2"
@@ -37,5 +37,27 @@
             android:layout_height="40dp"
             android:layout_marginBottom="30dp"
             android:hint="@string/nickname" />
+
+        <TextView
+            style="@style/txt_style"
+            android:id="@+id/txt_challeng_dt"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Challenges completed" />
+
+        <TextView
+            style="@style/txt_style"
+            android:id="@+id/txt_points_dt"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Points" />
+
+        <TextView
+            style="@style/txt_style"
+            android:id="@+id/txt_kill_dt"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="zombies_killed" />
+
     </LinearLayout>
 </LinearLayout>
