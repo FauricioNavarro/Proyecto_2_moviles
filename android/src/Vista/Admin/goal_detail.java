@@ -17,7 +17,7 @@ public class goal_detail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goal_detail);
+        setContentView(R.layout.activity_user_detail);
         toolbar = findViewById(R.id.toolbar_goal);
         toolbar.setTitle(R.string.goal_det);
         toolbar.setBackgroundColor(getResources().getColor(R.color.gray));
