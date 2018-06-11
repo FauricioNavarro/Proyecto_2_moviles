@@ -122,10 +122,10 @@ public class login extends AppCompatActivity {
     }
 
     public void logIn(View v){
-        //String mail_aux = mail1.getText().toString();
-        //String pass_aux = password1.getText().toString();
-        String mail_aux = "admin@mail.com";
-        String pass_aux = "admin";
+        String mail_aux = mail1.getText().toString();
+        String pass_aux = password1.getText().toString();
+        //String mail_aux = "admin@mail.com";
+        //String pass_aux = "admin";
         //String mail_aux = "mario@mail.com";
         //String pass_aux = "m1234";
         if(!mail_aux.equals("") && !pass_aux.equals("")){
@@ -171,11 +171,6 @@ public class login extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void temp(View v){
-        //Intent  intent = new Intent(getApplicationContext(),playerActivity.class);
-        Intent  intent = new Intent(getApplicationContext(),AndroidLauncher.class);
-        startActivity(intent);
-    }
 
     private void signInG() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);

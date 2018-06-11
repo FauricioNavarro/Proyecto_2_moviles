@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.mygdx.game.AndroidLauncher;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.R;
@@ -33,12 +34,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private String nm;
     private static final int radio = 20;
     private LatLng sydney;
+    final static String projextToken = "7a672431d5118e82bf9f7478530f06b5";
+    MixpanelAPI mixpanel;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        mixpanel = MixpanelAPI.getInstance(this,projextToken);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -81,10 +86,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 float[] results = new float[1];
                 Location.distanceBetween(mMap.getMyLocation().getLatitude(),mMap.getMyLocation().getLongitude(),sydney.latitude,sydney.longitude,results);
                 if (results[0]<= radio){
+                    mixpanel.track("User accessed to the challenge");
                     Intent  intent = new Intent(getApplicationContext(),AndroidLauncher.class);
                     startActivity(intent);
                 }
                 else {
+                    mixpanel.track("User trying to access the challenge outside the range");
                     Toast.makeText(getApplicationContext(),"No se encuentra dentro del radio para iniciar el reto",Toast.LENGTH_SHORT).show();
                 }
             }
@@ -105,6 +112,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    @Override
+    protected void onDestroy() {
+        mixpanel.flush();
+        super.onDestroy();
+    }
 
 
 
