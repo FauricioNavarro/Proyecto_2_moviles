@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_gravity="center_vertical"
     tools:context="Vista.Admin.goal_detail">
 
     <EditText
@@ -12,7 +13,7 @@
         android:id="@+id/txt_name_goal"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:hint="@string/email" />
+        android:hint="@string/name" />
 
     <EditText
         style="@style/txt_style_2"
@@ -20,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="5dp"
-        android:hint="@string/password" />
+        android:hint="latitud" />
 
     <EditText
         style="@style/txt_style_2"
@@ -28,15 +29,31 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="5dp"
-        android:hint="@string/password" />
+        android:hint="longitud" />
 
     <EditText
         style="@style/txt_style_2"
         android:id="@+id/txt_points_goal"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:hint="poinst" />
+
+    <EditText
+        style="@style/txt_style_2"
+        android:id="@+id/txt_type_goal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:hint="type id" />
+
+    <EditText
+        style="@style/txt_style_2"
+        android:id="@+id/txt_challg_goal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:layout_marginBottom="30dp"
-        android:hint="@string/password" />
+        android:hint="challenges id" />
 
     <Button
         android:text="@string/btn_add"

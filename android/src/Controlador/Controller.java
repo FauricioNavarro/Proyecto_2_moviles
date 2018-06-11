@@ -419,4 +419,18 @@ public class Controller {
         }
         return output;
     }
+
+    public String add_goal(String name,String latitud,String longitud,
+                String points,String type,String challenge){
+        String output = null;
+        try {
+            output = new Dao_api().execute("add_challenge",name,latitud,longitud,
+                    points,type,challenge).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
 }

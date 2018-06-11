@@ -43,50 +43,98 @@
         <activity
             android:name="Vista.Admin.dashboard_admin"
             android:label="@string/title_activity_dashboard_admin"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat" />
         <activity
             android:name="Vista.signIn"
-            android:label="Sign In"
-            android:theme="@style/Theme.AppCompat" />
-        <activity
-            android:name="Vista.Admin.add_challenge"
-            android:theme="@style/Theme.AppCompat" />
-        <activity
-            android:name="Vista.Admin.add_achievement"
-            android:theme="@style/Theme.AppCompat" />
-        <activity
-            android:name="Vista.Admin.user_detail"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name="Vista.Admin.goal_detail"
-            android:theme="@style/Theme.AppCompat"/>
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat"
+            android:parentActivityName="Vista.login">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="Vista.login"/>
+        </activity>
 
+    <activity
+        android:name="Vista.Admin.add_challenge"
+        android:theme="@style/Theme.AppCompat"
+        android:parentActivityName="Vista.Admin.dashboard_admin">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="Vista.Admin.dashboard_admin"/>
+    </activity>
+
+    <activity
+        android:name="Vista.Admin.add_achievement"
+        android:theme="@style/Theme.AppCompat"
+        android:parentActivityName="Vista.Admin.dashboard_admin">
+        <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value="Vista.Admin.dashboard_admin"/>
+    </activity>
+    <activity
+        android:name="Vista.Admin.user_detail"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:parentActivityName="Vista.Admin.dashboard_admin">
+        <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value="Vista.Admin.dashboard_admin"/>
+    </activity>
+
+<activity android:name="Vista.Admin.goal_detail"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:parentActivityName="Vista.Admin.dashboard_admin">
+    <meta-data
+    android:name="android.support.PARENT_ACTIVITY"
+    android:value="Vista.Admin.dashboard_admin"/>
+    </activity>
+    <!--
+         The API key for Google Maps-based APIs is defined as a string resource.
+         (See the file "res/values/google_maps_api.xml").
+         Note that the API key is linked to the encryption key used to sign the APK.
+         You need a different API key for each encryption key, including the release key that is used to
+         sign the APK for publishing.
+         You can define the keys for the debug and release targets in src/debug/ and src/release/.
+    -->
         <activity
             android:name="Vista.Player.MapsActivity"
             android:label="@string/title_activity_maps" />
+        android:screenOrientation="portrait" />
         <activity
             android:name="Vista.Admin.goal_list"
-            android:theme="@style/Theme.AppCompat" />
-        <activity android:name="Vista.Admin.add_goal"
-            android:theme="@style/Theme.AppCompat"/>
-        <activity android:name="Vista.Admin.achievement_detail"
-            android:theme="@style/Theme.AppCompat"/>
-        <activity
-            android:name="Vista.Player.playerActivity"
-            android:label="@string/title_activity_player"
-            android:theme="@style/Theme.AppCompat"/>
-        <activity android:name="Vista.Player.goal_listply_Activity"
-            android:theme="@style/Theme.AppCompat"></activity>
+
+        android:theme="@style/Theme.AppCompat"
+        android:parentActivityName="Vista.Admin.dashboard_admin">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="Vista.Admin.dashboard_admin"/>
+    </activity>
+    <activity android:name="Vista.Admin.add_goal"
+        android:theme="@style/Theme.AppCompat"
+        android:parentActivityName="Vista.Admin.dashboard_admin">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="Vista.Admin.dashboard_admin"/>
+        </activity>
+    <activity android:name="Vista.Admin.achievement_detail"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:parentActivityName="Vista.Admin.dashboard_admin">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="Vista.Admin.dashboard_admin"/>
+    </activity>
+    <activity
+        android:name="Vista.Player.playerActivity"
+        android:label="@string/title_activity_player"
+        android:screenOrientation="portrait"
+        android:theme="@style/Theme.AppCompat">
+    </activity>
+    <activity android:name="Vista.Player.goal_listply_Activity"
+        android:parentActivityName="Vista.Player.playerActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="Vista.Player.playerActivity"/>
+    </activity>
     </application>
 
 </manifest>
